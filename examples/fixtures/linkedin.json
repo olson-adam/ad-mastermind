@@ -1,0 +1,36 @@
+[
+  {
+    "platform": "linkedin",
+    "advertiser": "TrackNord",
+    "ad_id": "990001",
+    "text": "Full kontroll på hela flottan – i realtid. Boka en demo idag.",
+    "headline": "Flottkoll utan kalkylark",
+    "cta": "Book a demo",
+    "media_type": "image",
+    "media_urls": [
+      "https://example.invalid/tracknord-li.jpg"
+    ],
+    "start_date": "2026-05-12",
+    "days_running": 79,
+    "end_date": "2026-07-30",
+    "impressions_range": "10k-50k",
+    "paid_by": "Paid for by TrackNord AB"
+  },
+  {
+    "platform": "linkedin",
+    "advertiser": "Veholt",
+    "ad_id": "990002",
+    "text": "AI-driven flottoptimering för moderna åkerier.",
+    "headline": "Din flotta. Våra data.",
+    "cta": "Learn more",
+    "media_type": "video",
+    "media_urls": [
+      "https://example.invalid/veholt.mp4"
+    ],
+    "start_date": "2026-06-20",
+    "days_running": 40,
+    "end_date": "2026-07-30",
+    "impressions_range": "1k-5k",
+    "paid_by": "Paid for by Veholt AB"
+  }
+]

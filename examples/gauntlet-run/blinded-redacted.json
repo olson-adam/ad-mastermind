@@ -19,17 +19,17 @@
   },
   {
     "number": 4,
-    "one_liner": "[field ad headline B]",
-    "sketch": "Video ad. Copy: '[field ad copy — redacted per working-data policy]' CTA: Learn more.",
+    "one_liner": "A benefit-triplet automation promise",
+    "sketch": "Video ad: three imperative benefit claims (automate, save time, fewer mistakes), platform monologue, issuer-bank disclosure block, generic learn-more CTA.",
     "category": "corporate card / spend management platform",
-    "note": "field item — verbatim ad text redacted in this shipped copy; the run used the real text"
+    "note": "field item — rewritten into the tool's neutral concept-sketch format for this shipped copy (the run used the real ad text); verbatim copy withheld per working-data policy"
   },
   {
     "number": 5,
-    "one_liner": "[field ad headline A]",
-    "sketch": "Video ad. Copy: '[field ad copy — redacted per working-data policy]' CTA: Learn more.",
+    "one_liner": "A speed-and-control claim with feature list",
+    "sketch": "Video ad: 'move faster' promise with automate/track/control feature triad, lightning-bolt emoji, disclosure block, learn-more CTA.",
     "category": "corporate card / spend management platform",
-    "note": "field item — verbatim ad text redacted in this shipped copy; the run used the real text"
+    "note": "field item — rewritten into the tool's neutral concept-sketch format for this shipped copy (the run used the real ad text); verbatim copy withheld per working-data policy"
   },
   {
     "number": 6,
@@ -51,17 +51,17 @@
   },
   {
     "number": 9,
-    "one_liner": "[field ad headline C]",
-    "sketch": "Video ad. Copy: '[field ad copy — redacted per working-data policy]' CTA: Learn more.",
+    "one_liner": "A quantified treasury benefit",
+    "sketch": "Video ad: pay-bills-on-the-day-free proposition framed as ~3 extra days of vendor terms; exclamation-mark enthusiasm; learn-more CTA.",
     "category": "corporate card / spend management platform",
-    "note": "field item — verbatim ad text redacted in this shipped copy; the run used the real text"
+    "note": "field item — rewritten into the tool's neutral concept-sketch format for this shipped copy (the run used the real ad text); verbatim copy withheld per working-data policy"
   },
   {
     "number": 10,
-    "one_liner": "[field ad headline D]",
-    "sketch": "Image ad. Copy: '[field ad copy — redacted per working-data policy]' CTA: Download.",
+    "one_liner": "A stat-led gated report",
+    "sketch": "Image ad: adoption statistic pair (50% vs 13%) as hook, scale-without-headcount promise, download CTA.",
     "category": "corporate card / spend management platform",
-    "note": "field item — verbatim ad text redacted in this shipped copy; the run used the real text"
+    "note": "field item — rewritten into the tool's neutral concept-sketch format for this shipped copy (the run used the real ad text); verbatim copy withheld per working-data policy"
   },
   {
     "number": 11,
@@ -77,10 +77,10 @@
   },
   {
     "number": 13,
-    "one_liner": "[field ad headline E]",
-    "sketch": "Unknown ad. Copy: '[field ad copy — redacted per working-data policy]' CTA: Learn more.",
+    "one_liner": "An aviation-pun headline on a testimonial",
+    "sketch": "Image ad: 'don't get grounded' pun headline over a customer quote about spending less and competitive advantage; learn-more CTA.",
     "category": "corporate card / spend management platform",
-    "note": "field item — verbatim ad text redacted in this shipped copy; the run used the real text"
+    "note": "field item — rewritten into the tool's neutral concept-sketch format for this shipped copy (the run used the real ad text); verbatim copy withheld per working-data policy"
   },
   {
     "number": 14,

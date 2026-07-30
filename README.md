@@ -17,11 +17,13 @@ wallpaper           field convention it breaks     mapping, 3 fresh judges,
 - **AI scoring flatters.** Our logged finding: self-scoring runs 1–1.5 levels kinder than independent judgment. So the gauntlet exists: seeded blinding, sealed mapping, three fresh judge instances, canon benchmarks as calibration, and wallpaper anchors as a discrimination control — **if the judges score the anchors kindly, the whole run is declared invalid.** The gate cannot be sweet-talked.
 - **Height without honesty is decoration.** The height ladder is a distinctiveness heuristic, openly labeled (it predicts standing out, not effectiveness — Field's IPA work on that decoupling is cited in the ladder itself), with floor scores for mediocre production and fragile-flags in every spec.
 
-## A real run — reported honestly
+## Real runs — reported honestly
 
-We pointed the toolchain at the **Meta performance layer** of one of B2B fintech's most celebrated creative brands (their famous brand campaigns live elsewhere — that gap between reputation-making creative and the paid feed is itself something the field layer makes measurable). Findings: **85% of their live Meta ads use the same CTA**, median 50 days in market, compliance boilerplate across ten-plus ads. Five concepts generated against that measured field were then judged by three fresh instances mixed with their real ads: **generated median 7, the running performance ads median 3**, negative anchors at 3 (discrimination valid), canon benchmarks at 8–9 (calibration confirmed). One generated concept scored 6 — the judges' reasoning matched the kill-gate's own doubts about it.
+**The field scan:** 170 live Meta ads across four US B2B fintech spend-management advertisers. The measured wallpaper: the *"in one (place)"* convention appears across **all four advertisers**, "get started" carries 28 ads, "in minutes" 23 — and the field's median ad is only 30 days old (12% run ≥90 days). A counts-only extract ships in [examples/category-field-extract.json](examples/category-field-extract.json) (aggregates and cross-advertiser phrase fragments only — ad text is working material and never redistributed).
 
-Caveats, because the protocol logs its own: source anonymity did **not** hold in that run (ad copy and concept sketches read differently — the scorecard flags this as `blinding_failed` and the protocol prescribes the fix), three of the five field items were video ads judged from their copy on a static-calibrated ladder, and judges and generator share a model family. The level discrimination stood every control we could throw at it; "blind" is claimed only where it held. A sanitized version of the full run (scorecard, sealed mapping, all three judges' verdicts) ships in [examples/gauntlet-run/](examples/gauntlet-run/) — a quality gate you can't audit is theater.
+**The gauntlet:** five concepts generated against one large advertiser's measured Meta performance layer, then judged by three fresh instances mixed with that advertiser's real running ads: **generated median 7, the running ads median 3**, negative anchors at 3 (discrimination valid), canon benchmarks at 8–9 (calibration confirmed). One generated concept scored 6 — the judges' reasoning matched the kill-gate's own doubts about it.
+
+Caveats, because the protocol logs its own: source anonymity did **not** hold (ad copy and concept sketches read differently — the scorecard flags `blinding_failed`, parity rate printed, and the protocol prescribes the fix), four of the five field items were not verified statics judged on a static-calibrated ladder, and judges share a model family with the generator. The level discrimination stood every control we could throw at it; "blind" is claimed only where it held. The sanitized full run (scorecard, sealed mapping, all three judges' verdicts, field items rewritten into neutral sketch form) ships in [examples/gauntlet-run/](examples/gauntlet-run/) — a quality gate you can't audit is theater.
 
 ## Install
 
@@ -36,7 +38,7 @@ Or clone into `~/.claude/skills/ad-mastermind/`. Requires [Claude Code](https://
 ```
 you: what are our competitors running?          → field scan + field brief
 you: ad concepts for {brand}                    → full run: field → concepts → kill log
-you: critique these ads                         → height + Lemon + scorecard per ad
+you: critique these ads                         → height + Lemon profile per ad
 you: run the gauntlet on these                  → blind verdict vs the field's real ads
 ```
 

@@ -102,6 +102,16 @@
   ],
   "house_phrases": [
     {
+      "phrase": "din flotta",
+      "ads": 3,
+      "advertiser": "Veholt"
+    },
+    {
+      "phrase": "full kontroll på",
+      "ads": 3,
+      "advertiser": "TrackNord"
+    },
+    {
       "phrase": "hela flottan",
       "ads": 3,
       "advertiser": "TrackNord"
@@ -110,16 +120,6 @@
       "phrase": "på hela",
       "ads": 3,
       "advertiser": "TrackNord"
-    },
-    {
-      "phrase": "kontroll på",
-      "ads": 3,
-      "advertiser": "TrackNord"
-    },
-    {
-      "phrase": "din flotta",
-      "ads": 3,
-      "advertiser": "Veholt"
     }
   ],
   "boilerplate_phrases": []

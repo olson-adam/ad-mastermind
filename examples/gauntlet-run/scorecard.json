@@ -9,6 +9,7 @@
   "run_valid": true,
   "blinding_failed": true,
   "verdict": "PASS — level floor met",
+  "complete_mix": true,
   "levels": {
     "generated": {
       "n": 5,
@@ -39,6 +40,7 @@
     "guessable_generated_items": 5,
     "non_abstain_guesses": 15,
     "guessed_generated_correctly": 15,
+    "parity_rate": 1.0,
     "note": "descriptive telemetry — confounded by style-clustering and item shape. blinding_failed=true means source anonymity did NOT hold: the level comparison stands (discrimination/calibration gates passed) but 'blind' may not be claimed."
   },
   "spread_flags": [],

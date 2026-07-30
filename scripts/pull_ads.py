@@ -157,7 +157,7 @@ def normalize_linkedin_adlib(raw: dict) -> dict:
     period = raw.get("period") or {}
     start = period.get("start")
     fmt = as_text(raw.get("format"))
-    media = [as_text(u) for u in (raw.get("videoUrls") or raw.get("imageUrls") or [])][:5]
+    media = [as_text(u) for u in ((raw.get("videoUrls") or []) + (raw.get("imageUrls") or []))][:5]
     buttons = raw.get("buttons") or []
     return {
         "platform": "linkedin",

@@ -10,9 +10,9 @@ Recommended mix: **5 generated · 5 field · ≥3 negative anchors · 2 benchmar
 
 - `generated` — the delivered concepts.
 - `field` — real ads from the field pull. **Normalize them into the SAME shape as concept sketches** (one-liner + what-you-see sketch), never as raw ad copy with CTA lines — our logged run proved that ad-copy-shaped items are instantly recognizable and the blinding fails (learning 5 below). Video ads: describe the visible concept, and either mark them `impossible_to_deidentify` or exclude them when the ladder's static calibration matters.
-- `negative-anchor` — wallpaper-pattern items **written fresh** (not copied from benchmarks.md's band 3–4 list, which judges receive as calibration — an anchor the judge has just read the answer to tests obedience, not judgment).
+- `negative-anchor` — wallpaper-pattern items **written fresh** (not copied from benchmarks.md's band 3–4 list, which judges receive as calibration — an anchor the judge has just read the answer to tests obedience, not judgment). **Anchor difficulty is author-set, so don't soften the control with strawmen:** anchors should be *competent* wallpaper (well-made dashboard-hero, polished testimonial), because a control that only catches garbage validates nothing.
 - `benchmark` — canon mechanisms, de-identified. Must be DIFFERENT entries from the 6 calibration examples handed to judges (those never appear in a test set).
-- **Entity scrub:** build a forbid-list from the field corpus's advertiser names plus any banks/partners/people in the copy, and run `gauntlet_prep.py --forbid entities.txt`. Our logged run leaked a card-issuer name that identified the advertiser in one search.
+- **Entity scrub:** build a forbid-list from the field corpus's advertiser names, the normalized ads' `paid_by` values, and any banks/partners/people in the copy, then run `gauntlet_prep.py --forbid entities.txt`. Our logged run leaked a card-issuer name that identified the advertiser in one search.
 
 ## Step 1 — Blinding (deterministic, scripted)
 
@@ -31,7 +31,7 @@ Before prep, every item is rewritten to **neutral format** by an instance that d
 
 **Forbidden in neutral format:** brand names, awards, self-grades, mechanism tags, years, sources — and *selling* the mechanism: "what the viewer completes" describes neutrally, never advocates (our logged failure: a generous normalizer lifted weak items 2+ levels).
 
-**De-identification limits:** world-famous campaigns are recognizable from the idea itself — acceptable; the judge scores the idea as if new today, and recognition shows up in the parity metric as information. Items impossible to de-identify are marked in the mapping and excluded from parity (kept for level calibration).
+**De-identification limits:** world-famous campaigns are recognizable from the idea itself — acceptable; the judge scores the idea as if new today, and recognition shows up in the parity metric as information. Items impossible to de-identify are marked in the mapping (benchmark/field only — prep rejects the flag on generated items, which would exempt your own concepts from parity).
 
 ## Step 2 — Judges
 
@@ -62,7 +62,7 @@ python3 <skill-dir>/scripts/gauntlet_score.py --verdicts j1.json j2.json j3.json
 | **Height** | median of 3 judges per item | generated set's median ≥7, and ≥ the field ads' median (beating the market is the floor) |
 | **Discrimination** | negative anchors' (wallpaper items') median | ≤5 — otherwise the judges are too kind and **the whole run is invalid** |
 | **Spread flag** | judge disagreement ≥3 levels on one item | flagged for human review — the human's taste is the answer key; the protocol adjusts, not their verdict |
-| **Parity** | correct source guesses on generated items (excl. `can't tell`) | descriptive, not pass/fail — but 100% correct guessing sets `blinding_failed: true` on the scorecard: the height comparison stands (its gates passed), and the word "blind" may not be used about the run |
+| **Parity** | correct source guesses on generated items (excl. `can't tell`) | descriptive, not pass/fail — but a parity rate ≥80% (with ≥6 non-abstain guesses) sets `blinding_failed: true` on the scorecard: the height comparison stands (its gates passed), and the word "blind" may not be used about the run |
 
 ## Integrity rules
 
@@ -70,7 +70,7 @@ python3 <skill-dir>/scripts/gauntlet_score.py --verdicts j1.json j2.json j3.json
 - Benchmark scores are never sent to judges except the 6 calibration examples.
 - Mapping and all raw verdicts are saved to the run directory (`field-data/gauntlet-runs/{date}-{run}/` — under the gitignored working area, never in version control); no summary numbers without traceable raw data.
 - Every run's scorecard states its seed, item counts per source, and any excluded items — silent exclusions invalidate the run.
-- If discrimination fails (anchors > 5) or calibration fails (benchmarks < 8), the run is INVALID — fix, rerun, never cherry-pick. `gauntlet_score.py` exit codes: 0 pass · 1 invalid run · 2 valid run but below the height floor (loop-friendly).
+- If discrimination fails (anchors > 5) or calibration fails (benchmarks < 8), the run is INVALID — fix, rerun, never cherry-pick. `gauntlet_score.py` exit codes: 0 full pass · 1 invalid run · 2 valid but below the floor OR partial mix (prep's `--partial`) · 3 input error (broken/duplicate verdict files — fix inputs, not calibration). Duplicate judge files are rejected by hash: three INDEPENDENT judges, always.
 
 ## Logged protocol learnings (kept because they're the point)
 

@@ -1,0 +1,163 @@
+{
+  "_note": "Counts-only extract of a real 4-advertiser field scan (US B2B fintech spend management, Meta Ad Library, 2026-07-30). Ad text is working material and is not redistributed — this extract carries only measured aggregates and short cross-advertiser phrase fragments.",
+  "total_ads": 170,
+  "advertisers": 4,
+  "ads_per_advertiser": {
+    "Ramp": 60,
+    "Brex": 40,
+    "Navan Edge": 40,
+    "Mercury": 30
+  },
+  "by_media_type": {
+    "video": 83,
+    "image": 71,
+    "unknown": 16
+  },
+  "top_ctas": {
+    "learn more": 71,
+    "sign up": 48,
+    "apply now": 37,
+    "book now": 4,
+    "get offer": 4,
+    "download": 2,
+    "see details": 2
+  },
+  "longevity": {
+    "ads_with_start_date": 170,
+    "median_days": 30.0,
+    "max_days": 310,
+    "share_over_90d": 0.12,
+    "share_under_14d": 0.12
+  },
+  "wallpaper_phrases": [
+    {
+      "phrase": "in one",
+      "ads": 12,
+      "advertisers": [
+        "Brex",
+        "Mercury",
+        "Navan Edge",
+        "Ramp"
+      ]
+    },
+    {
+      "phrase": "get started",
+      "ads": 28,
+      "advertisers": [
+        "Brex",
+        "Navan Edge",
+        "Ramp"
+      ]
+    },
+    {
+      "phrase": "in minutes",
+      "ads": 23,
+      "advertisers": [
+        "Brex",
+        "Mercury",
+        "Ramp"
+      ]
+    },
+    {
+      "phrase": "focus on",
+      "ads": 16,
+      "advertisers": [
+        "Brex",
+        "Mercury",
+        "Ramp"
+      ]
+    },
+    {
+      "phrase": "more than",
+      "ads": 13,
+      "advertisers": [
+        "Mercury",
+        "Navan Edge",
+        "Ramp"
+      ]
+    },
+    {
+      "phrase": "one place",
+      "ads": 8,
+      "advertisers": [
+        "Brex",
+        "Mercury",
+        "Navan Edge"
+      ]
+    },
+    {
+      "phrase": "your business",
+      "ads": 8,
+      "advertisers": [
+        "Brex",
+        "Mercury",
+        "Navan Edge"
+      ]
+    },
+    {
+      "phrase": "credit cards",
+      "ads": 21,
+      "advertisers": [
+        "Brex",
+        "Mercury"
+      ]
+    },
+    {
+      "phrase": "up to",
+      "ads": 20,
+      "advertisers": [
+        "Brex",
+        "Ramp"
+      ]
+    },
+    {
+      "phrase": "today for",
+      "ads": 18,
+      "advertisers": [
+        "Brex",
+        "Mercury"
+      ]
+    },
+    {
+      "phrase": "day one",
+      "ads": 17,
+      "advertisers": [
+        "Brex",
+        "Mercury"
+      ]
+    },
+    {
+      "phrase": "for free",
+      "ads": 14,
+      "advertisers": [
+        "Brex",
+        "Ramp"
+      ]
+    },
+    {
+      "phrase": "finance teams",
+      "ads": 12,
+      "advertisers": [
+        "Mercury",
+        "Ramp"
+      ]
+    },
+    {
+      "phrase": "real time",
+      "ads": 12,
+      "advertisers": [
+        "Brex",
+        "Ramp"
+      ]
+    },
+    {
+      "phrase": "cards and",
+      "ads": 10,
+      "advertisers": [
+        "Brex",
+        "Mercury"
+      ]
+    }
+  ],
+  "boilerplate_patterns": 1
+}

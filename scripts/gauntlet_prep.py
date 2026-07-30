@@ -21,7 +21,9 @@ SOURCES = {"generated", "field", "benchmark", "negative-anchor"}
 # Protocol vocabulary only — ordinary English ("next level", "through one lens")
 # must pass. Matched as word-bounded patterns.
 BANNED_PATTERNS = [
-    (r"\b(?:height|level)\s*[:=]?\s*\d", "self-grade (height/level + number)"),
+    # protocol form only: "height: 7", "level=8", "7/10" — plain "Level 2 support" passes
+    (r"\b(?:height|level)\s*[:=]\s*\d", "self-grade (height/level + number)"),
+    (r"\b\d{1,2}\s*/\s*10\b", "self-grade (n/10)"),
     (r"\bmechanism\s*\d", "mechanism tag"),
     (r"\blens\s*\d", "mechanism tag"),
     (r"\baward(?:ed|-winning)?\b", "award reference"),
@@ -35,6 +37,8 @@ def main():
     ap.add_argument("--seed", type=int, required=True, help="stated on the scorecard; makes the shuffle reproducible")
     ap.add_argument("--blinded", required=True)
     ap.add_argument("--mapping", required=True)
+    ap.add_argument("--partial", action="store_true",
+                    help="allow a mix without field/benchmark items — the scorecard will say those gates never ran")
     ap.add_argument("--forbid", help="file with forbidden entity names (brands, banks, people), one per line — "
                                      "preload it from the field corpus's advertiser names + any entities in the copy")
     args = ap.parse_args()
@@ -66,6 +70,16 @@ def main():
         errors.append("no generated items — nothing to evaluate")
     if counts["negative-anchor"] < 2:
         errors.append("need ≥2 negative anchors — without them the discrimination control can't run")
+    if not args.partial:
+        if counts["field"] < 3:
+            errors.append("need ≥3 field items for the market comparison (or run with --partial and "
+                          "accept a scorecard that says the field gate never ran)")
+        if counts["benchmark"] < 2:
+            errors.append("need ≥2 benchmark items for the calibration gate (or run with --partial)")
+    for i, item in enumerate(items):
+        if item.get("source") == "generated" and item.get("impossible_to_deidentify"):
+            errors.append(f"item {i}: impossible_to_deidentify is not allowed on generated items — "
+                          f"it would exempt your own concepts from the parity metric")
     if errors:
         print("BLOCKED:", file=sys.stderr)
         for e in errors:

@@ -21,6 +21,18 @@ en ett och att av data det din ditt du er för från har hur i inte kan med när
 """.split())
 
 
+def sentences(text: str) -> list[str]:
+    """Split into sentence-ish segments — n-grams must never cross these
+    boundaries (crossing manufactures phrases that don't exist, like
+    'stack northwind' from '…finance stack. Northwind Card is…')."""
+    parts = re.split(r"[.!?\n]+|\s\|\s|[•·]", text)
+    return [p.strip() for p in parts if p.strip()]
+
+
+def norm_sentence(s: str) -> str:
+    return re.sub(r"\s+", " ", re.sub(r"[^\w\såäöüéèê']", " ", s.lower())).strip()
+
+
 def tokenize(text: str) -> list[str]:
     text = text.lower()
     text = re.sub(r"[^\w\såäöüéèê']", " ", text)
@@ -29,6 +41,35 @@ def tokenize(text: str) -> list[str]:
 
 def ngrams(tokens: list[str], n: int) -> list[str]:
     return [" ".join(tokens[i:i + n]) for i in range(len(tokens) - n + 1)]
+
+
+def detect_boilerplate_sentences(ads: list[dict]) -> set[str]:
+    """Structural boilerplate detection: a sentence appearing (normalized) in
+    >60% of one advertiser's ads (advertiser has ≥5 ads) is a repeated block —
+    legal disclaimers, taglines-as-signatures — and is stripped BEFORE
+    n-gramming so neither it nor its neighbors can occupy convention slots.
+    Works cross-advertiser too: a disclaimer shared by three advertisers is
+    detected per advertiser and stripped for each."""
+    from collections import Counter as C, defaultdict as dd
+    per_adv_counts: dd[str, C] = dd(C)
+    per_adv_ads: C = C()
+    for a in ads:
+        per_adv_ads[a["advertiser"]] += 1
+        seen = set()
+        for s in sentences(f"{a.get('headline','')}\n{a.get('text','')}"):
+            ns = norm_sentence(s)
+            if len(ns.split()) >= 3 and ns not in seen:
+                seen.add(ns)
+                per_adv_counts[a["advertiser"]][ns] += 1
+    boiler: set[str] = set()
+    for adv, counts in per_adv_counts.items():
+        n_ads = per_adv_ads[adv]
+        if n_ads < 5:
+            continue
+        for ns, c in counts.items():
+            if c / n_ads > 0.6:
+                boiler.add(ns)
+    return boiler
 
 
 def main():
@@ -65,14 +106,26 @@ def main():
     # veterans: the ads that have run longest — the market's revealed preferences
     veterans = sorted((a for a in ads if a.get("days_running")), key=lambda a: -a["days_running"])[:10]
 
+    boiler_sentences = detect_boilerplate_sentences(ads)
     phrase_counts: Counter = Counter()
     phrase_advertisers: defaultdict[str, set] = defaultdict(set)
+    boiler_counts: Counter = Counter()
+    boiler_advertisers: defaultdict[str, set] = defaultdict(set)
     for a in ads:
-        tokens = tokenize(f"{a.get('headline','')} {a.get('text','')}")
-        for n in (2, 3):
-            for g in set(ngrams(tokens, n)):
-                phrase_counts[g] += 1
-                phrase_advertisers[g].add(a["advertiser"])
+        seen_creative: set[str] = set()
+        seen_boiler: set[str] = set()
+        for s in sentences(f"{a.get('headline','')}\n{a.get('text','')}"):
+            ns = norm_sentence(s)
+            target = seen_boiler if ns in boiler_sentences else seen_creative
+            tokens = tokenize(s)
+            for n in (2, 3):
+                target.update(ngrams(tokens, n))
+        for g in seen_creative:
+            phrase_counts[g] += 1
+            phrase_advertisers[g].add(a["advertiser"])
+        for g in seen_boiler:
+            boiler_counts[g] += 1
+            boiler_advertisers[g].add(a["advertiser"])
 
     def content_bearing(g: str) -> bool:
         """Drop pure function-word fragments — a convention must carry meaning."""
@@ -89,10 +142,18 @@ def main():
         return bool(BOILERPLATE.search(g))
 
     def dedupe_contained(rows: list[dict]) -> list[dict]:
-        """Collapse n-grams fully contained in a higher-ranked phrase."""
+        """Collapse a phrase into a higher-ranked one when it's a substring OR
+        shares all-but-one of its words (overlap clustering — stops one long
+        sentence from occupying five slots as sliding n-gram variants)."""
         kept: list[dict] = []
         for r in rows:
-            if any(r["phrase"] in k["phrase"] or k["phrase"] in r["phrase"] for k in kept):
+            rw = set(r["phrase"].split())
+            def same_cluster(k):
+                kw = set(k["phrase"].split())
+                shorter = min(len(rw), len(kw))
+                return (r["phrase"] in k["phrase"] or k["phrase"] in r["phrase"]
+                        or len(rw & kw) >= max(2, shorter - 1))
+            if any(same_cluster(k) for k in kept):
                 continue
             kept.append(r)
         return kept
@@ -103,7 +164,7 @@ def main():
     wp_candidates = sorted(
         (g for g in phrase_counts if len(phrase_advertisers[g]) >= 2 and content_bearing(g)
          and not is_boilerplate(g)),
-        key=lambda g: (-len(phrase_advertisers[g]), -phrase_counts[g]),
+        key=lambda g: (-len(phrase_advertisers[g]), -phrase_counts[g], g),  # alphabetical tiebreak = determinism
     )
     wallpaper = dedupe_contained([
         {"phrase": g, "ads": phrase_counts[g], "advertisers": sorted(phrase_advertisers[g])}
@@ -115,15 +176,21 @@ def main():
         for g in sorted(
             (g for g in phrase_counts if len(phrase_advertisers[g]) == 1
              and phrase_counts[g] >= 3 and content_bearing(g) and not is_boilerplate(g)),
-            key=lambda g: -phrase_counts[g],
+            key=lambda g: (-phrase_counts[g], g),
         )
     ])[:args.top]
-    # compliance boilerplate: reported as ONE field fact, not fifteen fragments
-    boiler = dedupe_contained([
-        {"phrase": g, "ads": phrase_counts[g], "advertisers": sorted(phrase_advertisers[g])}
-        for g in sorted((g for g in phrase_counts if phrase_counts[g] >= 3 and is_boilerplate(g)),
-                        key=lambda g: -phrase_counts[g])
-    ])[:5]
+    # boilerplate: reported as whole repeated BLOCKS (one field fact each), never fragments
+    block_ads: Counter = Counter()
+    block_advs: defaultdict[str, set] = defaultdict(set)
+    for a in ads:
+        hit = {norm_sentence(s) for s in sentences(f"{a.get('headline','')}\n{a.get('text','')}")} & boiler_sentences
+        for ns in hit:
+            block_ads[ns] += 1
+            block_advs[ns].add(a["advertiser"])
+    boiler = [
+        {"phrase": ns, "ads": c, "advertisers": sorted(block_advs[ns])}
+        for ns, c in sorted(block_ads.items(), key=lambda kv: (-kv[1], kv[0]))[:5]
+    ]
 
     result = {
         "total_ads": len(ads),
