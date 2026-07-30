@@ -1,0 +1,89 @@
+{
+  "total_ads": 7,
+  "by_advertiser": {
+    "TrackNord": 3,
+    "FleetBase": 2,
+    "Veholt": 2
+  },
+  "by_platform": {
+    "meta": 7
+  },
+  "by_media_type": {
+    "image": 7
+  },
+  "top_ctas": {
+    "book a demo": 5,
+    "learn more": 1,
+    "get started": 1
+  },
+  "longevity": {
+    "ads_with_start_date": 7,
+    "median_days": 110,
+    "max_days": 196,
+    "share_over_90d": 0.57,
+    "share_under_14d": 0.0
+  },
+  "veterans": [
+    {
+      "advertiser": "FleetBase",
+      "days_running": 196,
+      "headline": "Fleet management made simple",
+      "text": "Full kontroll över fordon, förare och kostnader."
+    },
+    {
+      "advertiser": "TrackNord",
+      "days_running": 170,
+      "headline": "Full kontroll på hela flottan",
+      "text": "Se varje fordon i realtid. Boka demo idag."
+    },
+    {
+      "advertiser": "Veholt",
+      "days_running": 144,
+      "headline": "Full kontroll, noll krångel",
+      "text": "Allt om din flotta i en dashboard."
+    },
+    {
+      "advertiser": "FleetBase",
+      "days_running": 110,
+      "headline": "Trusted by 500+ fleets",
+      "text": "Se varför 500+ flottor valt FleetBase. Boka demo."
+    },
+    {
+      "advertiser": "TrackNord",
+      "days_running": 89,
+      "headline": "Full kontroll på hela flottan",
+      "text": "Realtidsdata för hela flottan. Boka demo."
+    },
+    {
+      "advertiser": "TrackNord",
+      "days_running": 40,
+      "headline": "Sänk bränslekostnaderna",
+      "text": "Datadriven körning. Full kontroll. Boka demo."
+    },
+    {
+      "advertiser": "Veholt",
+      "days_running": 29,
+      "headline": "Din flotta. Våra data.",
+      "text": "AI-driven flottoptimering för moderna åkerier."
+    }
+  ],
+  "wallpaper_phrases": [
+    {
+      "phrase": "full kontroll",
+      "ads": 5,
+      "advertisers": [
+        "FleetBase",
+        "TrackNord",
+        "Veholt"
+      ]
+    },
+    {
+      "phrase": "boka demo",
+      "ads": 4,
+      "advertisers": [
+        "FleetBase",
+        "TrackNord"
+      ]
+    }
+  ]
+}
