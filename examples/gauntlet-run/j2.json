@@ -1,0 +1,107 @@
+[
+  {
+    "number": 1,
+    "height": 7,
+    "justification": "The category's most-hated ritual reproduced as the ad itself, with the sell placed outside the artifact so the reader reaches the point unaided; height depends entirely on the thread reading found rather than written.",
+    "lemon": "right: line/dialogue throughout, betweenness between chaser and colleague, captured moment mid-happening, reader-completion; left: text-as-graphic is the whole surface, no place, no faces",
+    "source_guess": "generated"
+  },
+  {
+    "number": 2,
+    "height": 6,
+    "justification": "A tidy typographic asymmetry, but the ad states the unfairness rather than letting the reader assemble it - smart craft in the Vanta band, not new territory.",
+    "lemon": "right: mild wordplay via the repeated 19, some reader-completion; left: flat color field, no place, no character, sender-side claim structure",
+    "source_guess": "generated"
+  },
+  {
+    "number": 3,
+    "height": 3,
+    "justification": "Posed customer portrait, efficiency quote and logo wall is the exact testimonial wallpaper every platform in the category runs.",
+    "lemon": "right: a person is present, but posed at camera with no agency or situation; left: testimonial monologue, model-posing, logo wall as graphic, self-absorption",
+    "source_guess": "real ad"
+  },
+  {
+    "number": 4,
+    "height": 3,
+    "justification": "Three feature promises plus compliance boilerplate - correct, frictionless and completely unseeable.",
+    "lemon": "right: none; left: claim-monologue, adjectives-as-nouns, self-absorption, card emoji standing in for an idea",
+    "source_guess": "real ad"
+  },
+  {
+    "number": 5,
+    "height": 3,
+    "justification": "'[field ad headline A]' plus automate/track/control is the category's default sentence with a different verb on the front.",
+    "lemon": "right: none; left: monologue claim, abstract nouns doing the work, brand talking about itself, no place or people",
+    "source_guess": "real ad"
+  },
+  {
+    "number": 6,
+    "height": 3,
+    "justification": "Dashboard hero, three checkmarks, book a demo - this is the bottom anchor itself, not merely something resembling it.",
+    "lemon": "right: none; left: UI screenshot as hero, flat layout, checkmark claims, self-absorption, zero human presence",
+    "source_guess": "can't tell"
+  },
+  {
+    "number": 7,
+    "height": 9,
+    "justification": "Owning the number-two position and converting the admission into proof of the promise reframed how a whole category could talk about itself, and is still cited decades later.",
+    "lemon": "right: a voice with self-distance, implied characters and service moments, trust built by reader inference; left: text-led, no single depicted scene",
+    "source_guess": "real ad"
+  },
+  {
+    "number": 8,
+    "height": 7,
+    "justification": "Turns the category's own unread legal tail into the message and lets the reader discover the derailment mid-scan; category-native rather than borrowed from another genre, though the comic swerve is a familiar device so craft carries it.",
+    "lemon": "right: wordplay and reader-completion, an implied character in Amanda, wit with self-distance; left: pure text-as-graphic, flat field, no place or depth",
+    "source_guess": "generated"
+  },
+  {
+    "number": 9,
+    "height": 3,
+    "justification": "A genuinely concrete benefit - three extra days of vendor terms - delivered as plain feature narration with nothing to see.",
+    "lemon": "right: none beyond a faintly vivid comparison; left: claim-monologue, self-absorption, exclamation-mark enthusiasm, no character or place",
+    "source_guess": "real ad"
+  },
+  {
+    "number": 10,
+    "height": 3,
+    "justification": "Stat-bait gated report in the current AI framing; the numbers are the only interesting thing and they belong to someone else's survey.",
+    "lemon": "right: none; left: flat stat card, abstract nouns, download-gate self-interest, no human or scene",
+    "source_guess": "real ad"
+  },
+  {
+    "number": 11,
+    "height": 4,
+    "justification": "Brand-colored INSIGHT card asserting a truism the reader already believed - the thought-leadership anchor with a different noun swapped in.",
+    "lemon": "right: none; left: intrusive text-as-graphic, flat field, abstracted claim, logo-plus-assertion self-absorption",
+    "source_guess": "can't tell"
+  },
+  {
+    "number": 12,
+    "height": 8,
+    "justification": "The medium performs the exact failure the product prevents, so demonstration and punchline are the same object - that self-implicating move breaks advertising convention, not just the category's.",
+    "lemon": "right: real place in street furniture, wit with self-distance, one-step reader-completion, direct address to a passerby; left: typographic surface only, no people depicted",
+    "source_guess": "real ad"
+  },
+  {
+    "number": 13,
+    "height": 4,
+    "justification": "A limp aviation pun bolted onto a customer quote that has nothing to do with it; competent, cheap to ignore, and well below the Vanta pun band.",
+    "lemon": "right: faint wordplay; left: testimonial monologue, competitive-advantage boilerplate, headline disconnected from body, no scene",
+    "source_guess": "real ad"
+  },
+  {
+    "number": 14,
+    "height": 7,
+    "justification": "Borrowed genre, but the evidence wall is built from the target's own artifacts and the episode numbering turns it into an asset system with real energy - playfulness earning the level the borrow alone would cap at 6.",
+    "lemon": "right: a made place, a character with obsessive agency, betweenness between chaser and suspects, captured scene with depth, comic line; left: screenshots used as props",
+    "source_guess": "generated"
+  },
+  {
+    "number": 15,
+    "height": 7,
+    "justification": "One found object does all the work: the drawer is the audience's real filing system and the caption's official accounting register supplies the whole joke without explaining it.",
+    "lemon": "right: a felt real place, an implied character in whoever filled the drawer, photographed depth, reader completes the reframe; left: no people visible, single line of sender text",
+    "source_guess": "generated"
+  }
+]

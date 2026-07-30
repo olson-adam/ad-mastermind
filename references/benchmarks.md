@@ -22,7 +22,7 @@ Static-carried awarded B2B is a THIN niche — Cannes B2B is dominated by stunts
 An unknown 100-year-old's Instagram on 850 metro posters, no logo — the medium proving its own effect. **Level 10.**
 **Lesson:** self-proving demonstration — use what you sell to prove what you sell; curiosity (senderlessness) as engine.
 
-### Reporters Without Borders — the self-censoring ad (Åkestam Holst, Guldägget 2023)
+### Reporters Without Borders — the self-censoring ad (Åkestam Holst NoA, Guldägget nominee 2023)
 A broadsheet page whose ink fades — the text censors itself in front of the reader. **Level 9.**
 **Lesson:** the medium's physical properties can CARRY the message; a time dimension inside a static surface.
 
@@ -61,6 +61,9 @@ The B2B SaaS category convention: "everything in one place" claims · UI/dashboa
 5. **Human + moment, not product + claim** — the Lemon traits recur in almost everything awarded.
 6. **The asset system is built in from day 1** — the winners are series-able (Economist for decades; Ramp's Kevin universe).
 
+## Sources
+Attributions above are searchable citations (campaign + agency + award body + year) rather than URLs, and were web-spot-checked 2026-07-30: Marina Prieto (Cannes Creative B2B Grand Prix 2024), Field's 12→4 multiplier (IPA, "Crisis in Creative Effectiveness", 2019), Segment's wrong-city board (San Francisco, 2019), RSF (Åkestam Holst NoA for Dagens Nyheter — **nominee**, not winner, hence the wording above). Corrections welcome as issues — an entry that fails verification gets struck.
+
 ## Maintenance
-- Refresh after each Cannes/D&AD/One Show cycle; every new entry requires web verification + a source. An entry without a source gets struck.
+- Refresh after each Cannes/D&AD/One Show cycle; every new entry requires web verification + a searchable citation. An entry without one gets struck.
 - The corpus calibrates judges in the gauntlet; the six calibration examples handed to judges are drawn from here (2× band 8–10, 2× band 6–7, 2× band 3–4) and never appear in a test set.

@@ -4,6 +4,16 @@ Answers *measured, not felt*: *do the generated concepts stand indistinguishable
 
 **The field twist:** the comparison set isn't only awarded classics — it's the field's REAL running ads (pulled in step 1). Beating the market you'll actually appear next to is the honest bar; beating Think Small is not the assignment.
 
+## Step 0 — Building `items.json`
+
+Recommended mix: **5 generated · 5 field · ≥3 negative anchors · 2 benchmarks** (prep enforces ≥2 anchors; without them the discrimination control can't run).
+
+- `generated` — the delivered concepts.
+- `field` — real ads from the field pull. **Normalize them into the SAME shape as concept sketches** (one-liner + what-you-see sketch), never as raw ad copy with CTA lines — our logged run proved that ad-copy-shaped items are instantly recognizable and the blinding fails (learning 5 below). Video ads: describe the visible concept, and either mark them `impossible_to_deidentify` or exclude them when the ladder's static calibration matters.
+- `negative-anchor` — wallpaper-pattern items **written fresh** (not copied from benchmarks.md's band 3–4 list, which judges receive as calibration — an anchor the judge has just read the answer to tests obedience, not judgment).
+- `benchmark` — canon mechanisms, de-identified. Must be DIFFERENT entries from the 6 calibration examples handed to judges (those never appear in a test set).
+- **Entity scrub:** build a forbid-list from the field corpus's advertiser names plus any banks/partners/people in the copy, and run `gauntlet_prep.py --forbid entities.txt`. Our logged run leaked a card-issuer name that identified the advertiser in one search.
+
 ## Step 1 — Blinding (deterministic, scripted)
 
 ```
@@ -29,6 +39,17 @@ Before prep, every item is rewritten to **neutral format** by an instance that d
 - Each judge receives: (a) [height-ladder.md](height-ladder.md) in full, (b) **6 calibration examples** from [benchmarks.md](benchmarks.md) (2× band 8–10, 2× band 6–7, 2× band 3–4 — never part of the test set), (c) the blinded list.
 - Per item, the judge returns: **height 1–10** (integer) + one-line justification + **Lemon profile** + **source guess**: `real ad` / `generated` / `can't tell`.
 
+**Judge prompt template** (fill the brackets; whole final response must be the JSON array only):
+
+> You are an independent creative judge for static B2B advertising. You have no other context and should use none.
+> STEP 1: Read [absolute path to height-ladder.md] in full.
+> STEP 2: Calibrate against these six scored examples (answer key — NOT in your test set): [six calibration examples with facit levels]. Assume your instinct scores too kindly — anchor hard against these.
+> STEP 3: Judge all [N] items below. Your ENTIRE response must be ONLY a strict JSON array, no markdown fences:
+> `[{"number": 1, "height": 7, "justification": "…", "lemon": "right: …; left: …", "source_guess": "real ad|generated|can't tell"}, …]`
+> THE ITEMS: [paste the blinded list]
+
+**Verdict file schema** (what `gauntlet_score.py` requires — one file per judge): a JSON array where every item has integer `number`, integer `height`, and `source_guess`; `justification` and `lemon` are kept for the record but not scored.
+
 ## Step 3 — Scoring (deterministic, scripted)
 
 ```
@@ -38,18 +59,18 @@ python3 <skill-dir>/scripts/gauntlet_score.py --verdicts j1.json j2.json j3.json
 
 | Metric | Definition | Pass |
 |---|---|---|
-| **Level** | median of 3 judges per item | generated set's median ≥7, and ≥ the field ads' median (beating the market is the floor) |
+| **Height** | median of 3 judges per item | generated set's median ≥7, and ≥ the field ads' median (beating the market is the floor) |
 | **Discrimination** | negative anchors' (wallpaper items') median | ≤5 — otherwise the judges are too kind and **the whole run is invalid** |
 | **Spread flag** | judge disagreement ≥3 levels on one item | flagged for human review — the human's taste is the answer key; the protocol adjusts, not their verdict |
-| **Parity** | correct source guesses on generated items (excl. `can't tell`) | descriptive, not pass/fail — our logged learning: when a generated set clusters stylistically, judges detect "a generated suite" regardless of quality, so source-classification doesn't correlate with quality judgment |
+| **Parity** | correct source guesses on generated items (excl. `can't tell`) | descriptive, not pass/fail — but 100% correct guessing sets `blinding_failed: true` on the scorecard: the height comparison stands (its gates passed), and the word "blind" may not be used about the run |
 
 ## Integrity rules
 
 - The generating session NEVER judges its own concepts. Judges are always fresh instances.
 - Benchmark scores are never sent to judges except the 6 calibration examples.
-- Mapping and all raw verdicts are saved to the run directory (`gauntlet-runs/{date}-{run}/`); no summary numbers without traceable raw data.
+- Mapping and all raw verdicts are saved to the run directory (`field-data/gauntlet-runs/{date}-{run}/` — under the gitignored working area, never in version control); no summary numbers without traceable raw data.
 - Every run's scorecard states its seed, item counts per source, and any excluded items — silent exclusions invalidate the run.
-- If discrimination fails, report "run invalid — judges too kind", fix calibration, rerun. Never cherry-pick the kinder run.
+- If discrimination fails (anchors > 5) or calibration fails (benchmarks < 8), the run is INVALID — fix, rerun, never cherry-pick. `gauntlet_score.py` exit codes: 0 pass · 1 invalid run · 2 valid run but below the height floor (loop-friendly).
 
 ## Logged protocol learnings (kept because they're the point)
 

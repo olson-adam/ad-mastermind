@@ -4,7 +4,7 @@ Every prioritized insight runs through AT LEAST 5 of these mechanisms. A mechani
 
 Working rule: generate fast and ugly — one line per raw concept (`[mechanism] × [insight]: [idea]`). Polish only survivors, after the kill-gate.
 
-**Hierarchy (blind-test evidence):** *format borrowing* (wanted-poster, authority-warning, protocol aesthetics) ceilings at 6 — "borrowed device" — while *documentary observations from the buyer's reality* reach 7. Therefore: **mechanisms 11 and 12 are first-class** and are tried on every prioritized insight; every culture-format idea must answer "what do we own here that doesn't leave with the format?".
+**Hierarchy (blind-test evidence, with its exception):** *format borrowing* (wanted-poster, authority-warning, protocol aesthetics) ceilings at 6 — "borrowed device" — while *documentary observations from the buyer's reality* reach 7. The logged exception (kill-gate instrument 1, confirmed by a judged run where a true-crime borrow earned 7): **culture-borrowing whose inner logic IS the point, executed with real energy, is a legitimate road to 7.** Therefore: mechanisms 11 and 12 are first-class and are tried on every prioritized insight; every culture-format idea must answer "what do we own here that doesn't leave with the format?".
 
 **The billboard-as-content principle:** a static B2B ad lives by being screenshotted and shared in the feed, not by its paid reach. Ask per concept: *who shares this, with what comment?* If no realistic sharer can be named, the scroll-stop is all it has.
 
@@ -85,7 +85,7 @@ All examples in this file are **constructed pattern examples** showing each mech
 **Fits:** in-market + warm (capture). **Trap:** believing the number in big font IS dramatization — the number needs a body.
 
 ## 11. Documentary observation (FIRST-CLASS)
-**Mechanism:** show the buyer's reality EXACTLY as it looks — a real place, a real moment, a real wall — and let a single line do the reframe. No metaphor, no borrowing: the unedited truth is what nobody in the category dares to show. In our blind testing this was the mechanism behind everything that independently reached 7.
+**Mechanism:** show the buyer's reality EXACTLY as it looks — a real place, a real moment, a real wall — and let a single line do the reframe. No metaphor, no borrowing: the unedited truth is what nobody in the category dares to show. In our early blind testing this mechanism carried the concepts that independently reached 7 (small n — treat as a strong prior, not a law; energetic culture-borrows have since matched it).
 **Recipe:** what already EXISTS in the buyer's world — places, walls, moments, rituals — that becomes an ad just by being pointed at? The reframe sits in the line, not the image. Requirement: the image must read as FOUND, not staged (art direction that cleans it up kills it — put it as a fragile-flag in the spec).
 - *The place where the expensive decision actually gets made (the parking lot, the elevator queue) + the price tag.*
 - *The real noticeboard/wall/desk drawer + one line naming it as "the system".*

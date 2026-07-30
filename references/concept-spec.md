@@ -8,6 +8,8 @@ Every delivered concept is written in this exact structure. The spec is what a d
 **One-liner:** {the idea in one sentence}
 **Sketch:** {2–3 lines: what you SEE in the ad, which copy carries it, what the viewer completes themselves}
 **Mechanism:** {which of the 12 — and if humor: which humor type}
+**Register:** {documentary photographic | typographic wit | graphic system | artifact | photo-meme | …}
+**Temperature:** {playful | dry}
 **Insight:** {the field/brief insight it's built on, one line}
 **Field convention broken:** {the named wallpaper phrase/format from field-stats it defies — or "in-convention" stated honestly}
 **Nearest field neighbor:** {the running ad it could most be confused with, and why it can't be}
@@ -30,5 +32,8 @@ A full concepting run delivers:
 ## Rules
 
 - The spec never contains internal scoring residue beyond what's listed (no hygiene-scorecard numbers — those live in the kill log appendix).
-- "Field convention broken" must quote `field-stats.json` — a convention the script found, not one asserted from memory.
+- "Field convention broken" must QUOTE a phrase from `field-stats.json` — a convention the script found, not one asserted from memory.
+- **The delivery is not done until `spec_check.py` passes:**
+  `python3 <skill-dir>/scripts/spec_check.py --specs concepts.md --field-stats field-stats.json`
+  It mechanically enforces the portfolio rules (mechanism spread, register diversity, temperature quota, floor spread, height median, test-cell logic, convention traceability). A failing check means fix the delivery, never the checker.
 - Fictional sample specs in `examples/` use fictional brands only.

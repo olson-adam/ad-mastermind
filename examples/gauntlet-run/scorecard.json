@@ -1,0 +1,302 @@
+{
+  "seed": 730,
+  "mix": {
+    "benchmark": 2,
+    "negative-anchor": 3,
+    "generated": 5,
+    "field": 5
+  },
+  "run_valid": true,
+  "blinding_failed": true,
+  "verdict": "PASS — level floor met",
+  "levels": {
+    "generated": {
+      "n": 5,
+      "median": 7,
+      "min": 6,
+      "max": 7
+    },
+    "field": {
+      "n": 5,
+      "median": 3,
+      "min": 3,
+      "max": 4
+    },
+    "negative_anchor": {
+      "n": 3,
+      "median": 3,
+      "min": 3,
+      "max": 4
+    },
+    "benchmark": {
+      "n": 2,
+      "median": 8.5,
+      "min": 8,
+      "max": 9
+    }
+  },
+  "parity_descriptive": {
+    "guessable_generated_items": 5,
+    "non_abstain_guesses": 15,
+    "guessed_generated_correctly": 15,
+    "note": "descriptive telemetry — confounded by style-clustering and item shape. blinding_failed=true means source anonymity did NOT hold: the level comparison stands (discrimination/calibration gates passed) but 'blind' may not be claimed."
+  },
+  "spread_flags": [],
+  "items": [
+    {
+      "number": 1,
+      "source": "generated",
+      "median": 7,
+      "heights": [
+        7,
+        7,
+        6
+      ],
+      "spread_flag": false,
+      "guesses": [
+        "generated",
+        "generated",
+        "generated"
+      ],
+      "excluded_from_parity": false
+    },
+    {
+      "number": 2,
+      "source": "generated",
+      "median": 6,
+      "heights": [
+        6,
+        6,
+        6
+      ],
+      "spread_flag": false,
+      "guesses": [
+        "generated",
+        "generated",
+        "generated"
+      ],
+      "excluded_from_parity": false
+    },
+    {
+      "number": 3,
+      "source": "negative-anchor",
+      "median": 3,
+      "heights": [
+        3,
+        3,
+        3
+      ],
+      "spread_flag": false,
+      "guesses": [
+        "can't tell",
+        "real ad",
+        "real ad"
+      ],
+      "excluded_from_parity": false
+    },
+    {
+      "number": 4,
+      "source": "field",
+      "median": 3,
+      "heights": [
+        3,
+        3,
+        3
+      ],
+      "spread_flag": false,
+      "guesses": [
+        "real ad",
+        "real ad",
+        "real ad"
+      ],
+      "excluded_from_parity": false
+    },
+    {
+      "number": 5,
+      "source": "field",
+      "median": 3,
+      "heights": [
+        3,
+        3,
+        3
+      ],
+      "spread_flag": false,
+      "guesses": [
+        "real ad",
+        "real ad",
+        "real ad"
+      ],
+      "excluded_from_parity": false
+    },
+    {
+      "number": 6,
+      "source": "negative-anchor",
+      "median": 3,
+      "heights": [
+        3,
+        3,
+        3
+      ],
+      "spread_flag": false,
+      "guesses": [
+        "generated",
+        "can't tell",
+        "real ad"
+      ],
+      "excluded_from_parity": false
+    },
+    {
+      "number": 7,
+      "source": "benchmark",
+      "median": 9,
+      "heights": [
+        9,
+        9,
+        9
+      ],
+      "spread_flag": false,
+      "guesses": [
+        "real ad",
+        "real ad",
+        "real ad"
+      ],
+      "excluded_from_parity": true
+    },
+    {
+      "number": 8,
+      "source": "generated",
+      "median": 7,
+      "heights": [
+        7,
+        7,
+        7
+      ],
+      "spread_flag": false,
+      "guesses": [
+        "generated",
+        "generated",
+        "generated"
+      ],
+      "excluded_from_parity": false
+    },
+    {
+      "number": 9,
+      "source": "field",
+      "median": 3,
+      "heights": [
+        4,
+        3,
+        3
+      ],
+      "spread_flag": false,
+      "guesses": [
+        "real ad",
+        "real ad",
+        "real ad"
+      ],
+      "excluded_from_parity": false
+    },
+    {
+      "number": 10,
+      "source": "field",
+      "median": 3,
+      "heights": [
+        4,
+        3,
+        3
+      ],
+      "spread_flag": false,
+      "guesses": [
+        "real ad",
+        "real ad",
+        "real ad"
+      ],
+      "excluded_from_parity": false
+    },
+    {
+      "number": 11,
+      "source": "negative-anchor",
+      "median": 4,
+      "heights": [
+        4,
+        4,
+        3
+      ],
+      "spread_flag": false,
+      "guesses": [
+        "generated",
+        "can't tell",
+        "real ad"
+      ],
+      "excluded_from_parity": false
+    },
+    {
+      "number": 12,
+      "source": "benchmark",
+      "median": 8,
+      "heights": [
+        8,
+        8,
+        8
+      ],
+      "spread_flag": false,
+      "guesses": [
+        "real ad",
+        "real ad",
+        "can't tell"
+      ],
+      "excluded_from_parity": true
+    },
+    {
+      "number": 13,
+      "source": "field",
+      "median": 4,
+      "heights": [
+        4,
+        4,
+        4
+      ],
+      "spread_flag": false,
+      "guesses": [
+        "real ad",
+        "real ad",
+        "real ad"
+      ],
+      "excluded_from_parity": false
+    },
+    {
+      "number": 14,
+      "source": "generated",
+      "median": 7,
+      "heights": [
+        6,
+        7,
+        7
+      ],
+      "spread_flag": false,
+      "guesses": [
+        "generated",
+        "generated",
+        "generated"
+      ],
+      "excluded_from_parity": false
+    },
+    {
+      "number": 15,
+      "source": "generated",
+      "median": 7,
+      "heights": [
+        7,
+        7,
+        6
+      ],
+      "spread_flag": false,
+      "guesses": [
+        "generated",
+        "generated",
+        "generated"
+      ],
+      "excluded_from_parity": false
+    }
+  ]
+}

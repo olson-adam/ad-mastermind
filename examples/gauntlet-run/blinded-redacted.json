@@ -1,0 +1,97 @@
+[
+  {
+    "number": 1,
+    "one_liner": "The reminder email everyone in finance keeps writing, as the ad itself",
+    "sketch": "A pedantically authentic email thread — subject 'Re: Re: Re: receipt for the March trip?', four increasingly hollow gentle reminders to a colleague. One line outside the thread: 'There is software for never sending this email.'",
+    "category": "corporate card / spend management platform"
+  },
+  {
+    "number": 2,
+    "one_liner": "The asymmetry between spending money and accounting for it, as two clocks",
+    "sketch": "Split typographic layout, no imagery: 'Spending $19: 19 seconds. Closing the books on it: 19 days.' The viewer completes the unfairness themselves.",
+    "category": "corporate card / spend management platform"
+  },
+  {
+    "number": 3,
+    "one_liner": "Hear why finance leaders love the platform",
+    "sketch": "Posed portrait of a customer with a quote about efficiency gains, logo wall of customer companies underneath.",
+    "category": "corporate card / spend management platform"
+  },
+  {
+    "number": 4,
+    "one_liner": "[field ad headline B]",
+    "sketch": "Video ad. Copy: '[field ad copy — redacted per working-data policy]' CTA: Learn more.",
+    "category": "corporate card / spend management platform",
+    "note": "field item — verbatim ad text redacted in this shipped copy; the run used the real text"
+  },
+  {
+    "number": 5,
+    "one_liner": "[field ad headline A]",
+    "sketch": "Video ad. Copy: '[field ad copy — redacted per working-data policy]' CTA: Learn more.",
+    "category": "corporate card / spend management platform",
+    "note": "field item — verbatim ad text redacted in this shipped copy; the run used the real text"
+  },
+  {
+    "number": 6,
+    "one_liner": "Everything your finance team needs in one place",
+    "sketch": "Dashboard screenshot hero, three checkmark bullets (save time, reduce errors, full visibility), 'Book a demo' button.",
+    "category": "corporate card / spend management platform"
+  },
+  {
+    "number": 7,
+    "one_liner": "The sender admits being number two in its market and turns it into effort",
+    "sketch": "Confession as strategy: every line converts the weakness into proof of trying harder ('we can't afford dirty ashtrays'). The reader trusts the promise because of the admission.",
+    "category": "car rental"
+  },
+  {
+    "number": 8,
+    "one_liner": "The category's unread legal boilerplate turned into the entire ad",
+    "sketch": "Only giant fine print, growing more honest line by line: 'Terms and conditions apply. Cards issued by [bank]. Receipts chased by Amanda. Dignity not included.' Set exactly like real compliance text; the viewer discovers the derailment mid-read.",
+    "category": "corporate card / spend management platform"
+  },
+  {
+    "number": 9,
+    "one_liner": "[field ad headline C]",
+    "sketch": "Video ad. Copy: '[field ad copy — redacted per working-data policy]' CTA: Learn more.",
+    "category": "corporate card / spend management platform",
+    "note": "field item — verbatim ad text redacted in this shipped copy; the run used the real text"
+  },
+  {
+    "number": 10,
+    "one_liner": "[field ad headline D]",
+    "sketch": "Image ad. Copy: '[field ad copy — redacted per working-data policy]' CTA: Download.",
+    "category": "corporate card / spend management platform",
+    "note": "field item — verbatim ad text redacted in this shipped copy; the run used the real text"
+  },
+  {
+    "number": 11,
+    "one_liner": "A text card stating that manual expense management is broken",
+    "sketch": "Brand-colored text card: 'INSIGHT: Manual expense management costs more than you think.' Sender logo. Link to blog post.",
+    "category": "corporate card / spend management platform"
+  },
+  {
+    "number": 12,
+    "one_liner": "A billboard greeting the wrong city",
+    "sketch": "The sender sells data quality; the billboard says good morning to the wrong city. The error IS the demonstration — the viewer connects it in one step.",
+    "category": "data infrastructure"
+  },
+  {
+    "number": 13,
+    "one_liner": "[field ad headline E]",
+    "sketch": "Unknown ad. Copy: '[field ad copy — redacted per working-data policy]' CTA: Learn more.",
+    "category": "corporate card / spend management platform",
+    "note": "field item — verbatim ad text redacted in this shipped copy; the run used the real text"
+  },
+  {
+    "number": 14,
+    "one_liner": "Petty expenses investigated like true-crime cases",
+    "sketch": "A finance person's evidence wall: red string between a blurry receipt photo, a chat screenshot and a calendar invite. Caption: 'Episode 47: The $19 Uber. Three weeks. Four suspects. No receipt.' A recurring episode format.",
+    "category": "corporate card / spend management platform"
+  },
+  {
+    "number": 15,
+    "one_liner": "The desk drawer as the company's real accounting system",
+    "sketch": "One found-looking photo: a drawer of crumpled receipts, charger cables, last year's parking stub. One line: 'Q3's supporting documents.' Logo. Nothing else.",
+    "category": "corporate card / spend management platform"
+  }
+]

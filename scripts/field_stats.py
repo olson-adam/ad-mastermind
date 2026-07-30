@@ -15,6 +15,12 @@ import sys
 from collections import Counter, defaultdict
 
 
+STOPWORDS = set("""a an and are as at be but by for from get has have how i if in is it its my no not of on or our
+so that the their them they this to was we what when where which who will with you your yours can
+en ett och att av data det din ditt du er för från har hur i inte kan med när på om oss så som till upp ut var vi vår
+""".split())
+
+
 def tokenize(text: str) -> list[str]:
     text = text.lower()
     text = re.sub(r"[^\w\såäöüéèê']", " ", text)
@@ -35,7 +41,11 @@ def main():
     ads = []
     for path in args.ads:
         with open(path, encoding="utf-8") as f:
-            ads.extend(json.load(f))
+            data = json.load(f)
+        if not isinstance(data, list) or (data and not isinstance(data[0], dict) or (data and "advertiser" not in data[0])):
+            sys.exit(f"error: {path} is not a normalized ads file (expected a JSON array from pull_ads.py) — "
+                     f"did a stats/output file land in your --ads glob?")
+        ads.extend(data)
     if not ads:
         sys.exit("error: no ads")
 
@@ -63,18 +73,57 @@ def main():
             for g in set(ngrams(tokens, n)):
                 phrase_counts[g] += 1
                 phrase_advertisers[g].add(a["advertiser"])
-    # wallpaper phrases: used by 2+ different advertisers — the category's shared language
-    wallpaper = [
-        {"phrase": g, "ads": c, "advertisers": sorted(phrase_advertisers[g])}
-        for g, c in phrase_counts.most_common(200)
-        if len(phrase_advertisers[g]) >= 2
-    ][:args.top]
+
+    def content_bearing(g: str) -> bool:
+        """Drop pure function-word fragments — a convention must carry meaning."""
+        words = g.split()
+        return sum(1 for w in words if w not in STOPWORDS) >= max(1, len(words) - 1) and \
+            not (words[0] in STOPWORDS and words[-1] in STOPWORDS)
+
+    BOILERPLATE = re.compile(
+        r"\b(terms|conditions|issued by|fdic|member|bank|apply|rights reserved|privacy|villkor|gäller|utges av)\b")
+
+    def is_boilerplate(g: str) -> bool:
+        """Legal/compliance fragments are a real field fact but not creative conventions —
+        they get their own bucket instead of eating the wallpaper/house slots."""
+        return bool(BOILERPLATE.search(g))
+
+    def dedupe_contained(rows: list[dict]) -> list[dict]:
+        """Collapse n-grams fully contained in a higher-ranked phrase."""
+        kept: list[dict] = []
+        for r in rows:
+            if any(r["phrase"] in k["phrase"] or k["phrase"] in r["phrase"] for k in kept):
+                continue
+            kept.append(r)
+        return kept
+
+    # wallpaper phrases: shared by 2+ advertisers — ranked by advertiser BREADTH first,
+    # then ad count, BEFORE any truncation (a convention 3 advertisers each use once
+    # must beat a fragment one advertiser spams).
+    wp_candidates = sorted(
+        (g for g in phrase_counts if len(phrase_advertisers[g]) >= 2 and content_bearing(g)
+         and not is_boilerplate(g)),
+        key=lambda g: (-len(phrase_advertisers[g]), -phrase_counts[g]),
+    )
+    wallpaper = dedupe_contained([
+        {"phrase": g, "ads": phrase_counts[g], "advertisers": sorted(phrase_advertisers[g])}
+        for g in wp_candidates
+    ])[:args.top]
     # house phrases: recurring within a single advertiser (≥3 ads) — their own conventions/fatigue
-    house = [
-        {"phrase": g, "ads": c, "advertiser": next(iter(phrase_advertisers[g]))}
-        for g, c in phrase_counts.most_common(300)
-        if len(phrase_advertisers[g]) == 1 and c >= 3
-    ][:args.top]
+    house = dedupe_contained([
+        {"phrase": g, "ads": phrase_counts[g], "advertiser": next(iter(phrase_advertisers[g]))}
+        for g in sorted(
+            (g for g in phrase_counts if len(phrase_advertisers[g]) == 1
+             and phrase_counts[g] >= 3 and content_bearing(g) and not is_boilerplate(g)),
+            key=lambda g: -phrase_counts[g],
+        )
+    ])[:args.top]
+    # compliance boilerplate: reported as ONE field fact, not fifteen fragments
+    boiler = dedupe_contained([
+        {"phrase": g, "ads": phrase_counts[g], "advertisers": sorted(phrase_advertisers[g])}
+        for g in sorted((g for g in phrase_counts if phrase_counts[g] >= 3 and is_boilerplate(g)),
+                        key=lambda g: -phrase_counts[g])
+    ])[:5]
 
     result = {
         "total_ads": len(ads),
@@ -90,6 +139,7 @@ def main():
         ],
         "wallpaper_phrases": wallpaper,
         "house_phrases": house,
+        "boilerplate_phrases": boiler,
     }
 
     with open(args.output, "w", encoding="utf-8") as f:
@@ -104,6 +154,8 @@ def main():
         print("house phrases (single advertiser, ≥3 ads):")
         for h in house[:8]:
             print(f"  “{h['phrase']}” × {h['ads']} ads ({h['advertiser']})")
+    if boiler:
+        print(f"compliance boilerplate (reported separately): {len(boiler)} pattern(s), e.g. “{boiler[0]['phrase']}” × {boiler[0]['ads']}")
     print(f"saved → {args.output}")
 
 

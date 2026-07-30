@@ -8,8 +8,8 @@ Usage:
     python3 pull_ads.py --platform meta --keyword "fleet management" --max-items 100 --output field.json
     python3 pull_ads.py --normalize-only raw.json --platform meta --output ads.json   # re-map a saved raw dump
 
-Requires APIFY_API_TOKEN (paid per result — a 200-ad competitive sweep is a
-couple of dollars). Default actors are configurable via --actor: ad-library
+Requires APIFY_API_TOKEN (paid per result — a 200-ad competitive sweep typically
+costs well under a dollar at current list prices). Default actors: ad-library
 actor schemas differ and change; run with --dump-raw first on a new actor,
 inspect, and extend FIELD_CANDIDATES if a field comes back empty.
 
@@ -70,24 +70,33 @@ def as_text(value):
     return str(value) if value is not None else ""
 
 
-def days_running(start_date: str | None) -> int | None:
-    if not start_date:
+AS_OF: datetime.datetime | None = None  # set via --as-of for reproducible fixtures
+
+
+def _now() -> datetime.datetime:
+    return AS_OF or datetime.datetime.now(datetime.timezone.utc)
+
+
+def days_running(start_date) -> int | None:
+    if start_date in (None, "", 0):
         return None
-    for fmt in ("%Y-%m-%d", "%Y-%m-%dT%H:%M:%S", "%Y-%m-%dT%H:%M:%S%z", "%Y-%m-%dT%H:%M:%S.%f%z"):
-        try:
-            start = datetime.datetime.strptime(str(start_date)[:26], fmt.replace("%z", "")) if "%z" not in fmt else None
-            if start:
-                return max(0, (datetime.datetime.now() - start).days)
-        except ValueError:
-            continue
-    # epoch seconds?
+    s = str(start_date).strip()
+    # epoch seconds
     try:
-        ts = float(start_date)
+        ts = float(s)
         if ts > 1_000_000_000:
-            return max(0, (datetime.datetime.now() - datetime.datetime.fromtimestamp(ts)).days)
+            start = datetime.datetime.fromtimestamp(ts, tz=datetime.timezone.utc)
+            return max(0, (_now() - start).days)
     except (ValueError, TypeError):
         pass
-    return None
+    # ISO — with or without timezone, 'Z' included
+    try:
+        start = datetime.datetime.fromisoformat(s.replace("Z", "+00:00").replace(" ", "T", 1))
+        if start.tzinfo is None:
+            start = start.replace(tzinfo=datetime.timezone.utc)
+        return max(0, (_now() - start).days)
+    except ValueError:
+        return None
 
 
 def is_template(s: str) -> bool:
@@ -110,7 +119,11 @@ def normalize_meta_adlib(raw: dict) -> dict | None:
     text = first_real(card.get("body"), body.get("text") if isinstance(body, dict) else body,
                       snap.get("link_description"), card.get("link_description"))
     media, media_type = [], "unknown"
-    for c in cards or [snap]:
+    sources = list(cards) if cards else []
+    sources.append(snap)
+    sources.extend(x for x in (snap.get("images") or []) if isinstance(x, dict))
+    sources.extend(x for x in (snap.get("videos") or []) if isinstance(x, dict))
+    for c in sources:
         if c.get("video_sd_url") or c.get("video_hd_url"):
             media_type = "video"
             media.append(as_text(c.get("video_preview_image_url") or c.get("video_sd_url")))
@@ -138,6 +151,32 @@ def normalize_meta_adlib(raw: dict) -> dict | None:
     }
 
 
+def normalize_linkedin_adlib(raw: dict) -> dict:
+    """Extractor live-verified against ivanvs~linkedin-ad-library-scraper (2026-07-30)."""
+    adv = raw.get("advertiser") or {}
+    period = raw.get("period") or {}
+    start = period.get("start")
+    fmt = as_text(raw.get("format"))
+    media = [as_text(u) for u in (raw.get("videoUrls") or raw.get("imageUrls") or [])][:5]
+    buttons = raw.get("buttons") or []
+    return {
+        "platform": "linkedin",
+        "advertiser": as_text(adv.get("name") if isinstance(adv, dict) else adv),
+        "ad_id": as_text(raw.get("id")),
+        "text": as_text(raw.get("body")),
+        "headline": as_text(raw.get("title")),
+        "cta": as_text(buttons[0] if buttons else ""),
+        "media_type": ("video" if "VIDEO" in fmt or raw.get("videoUrls") else
+                       "image" if "IMAGE" in fmt or raw.get("imageUrls") else "unknown"),
+        "media_urls": media,
+        "start_date": as_text(start),
+        "days_running": days_running(start),
+        "end_date": as_text(period.get("end")),
+        "impressions_range": as_text(raw.get("totalImpression")),
+        "paid_by": as_text(raw.get("paidBy")),
+    }
+
+
 def normalize(raw_items: list[dict], platform: str) -> list[dict]:
     out = []
     for raw in raw_items:
@@ -145,6 +184,9 @@ def normalize(raw_items: list[dict], platform: str) -> list[dict]:
             row = normalize_meta_adlib(raw)
             if row:
                 out.append(row)
+            continue
+        if platform == "linkedin" and ("period" in raw or "totalImpression" in raw or "paidBy" in raw):
+            out.append(normalize_linkedin_adlib(raw))
             continue
         start = pick(raw, "start_date")
         media = pick(raw, "media_urls") or []
@@ -201,8 +243,11 @@ def run_actor(token: str, actor_id: str, run_input: dict, timeout: int = 600) ->
 
 
 def build_input(platform: str, advertiser: str | None, keyword: str | None, max_items: int, country: str = "US", page_id: str | None = None) -> dict:
-    """Input builders verified against the default actors' input schemas
-    (via /builds/default/openapi.json). Other actors: pass --input-json."""
+    """Both input builders live-verified 2026-07-30: Meta against curious_coder's
+    input schema + real runs, LinkedIn against ivanvs' schema + a real run
+    (keyword search searches ad TEXT on LinkedIn too — filter the output by
+    advertiser name, or use the ad-library company search URL via --input-json).
+    Other actors: --input-json."""
     term = advertiser or keyword
     if platform == "meta":
         # curious_coder~facebook-ads-library-scraper requires Ad Library URLs.
@@ -216,24 +261,50 @@ def build_input(platform: str, advertiser: str | None, keyword: str | None, max_
                      f"&country={country}&q={urllib.parse.quote(term or '')}&search_type=keyword_unordered&media_type=all")
         return {"urls": [{"url": adlib}], "count": max_items, "limitPerSource": max_items,
                 "scrapeAdDetails": False}
-    # linkedin default actor: generic term input, tolerant keys
-    return {"searchTerms": [term], "companyName": term, "query": term,
-            "maxItems": max_items, "count": max_items}
+    # ivanvs~linkedin-ad-library-scraper: urls + maxRecords (per its input schema —
+    # the LinkedIn Ad Library search URL carries the query)
+    li_url = f"https://www.linkedin.com/ad-library/search?keyword={urllib.parse.quote(term or '')}"
+    return {"urls": [{"url": li_url}], "maxRecords": max_items}
+
+
+def resolve_page_id(token: str, actor: str, advertiser: str, country: str = "US") -> str | None:
+    """Keyword search is noisy (a 'Ramp' search returns boat-ramp vendors), so
+    --advertiser on Meta runs a small probe first, picks the page_id whose
+    page_name matches the advertiser, then the caller re-pulls page-scoped."""
+    probe_input = build_input("meta", advertiser, None, 15, country=country)
+    probe = normalize(run_actor(token, actor, probe_input), "meta")
+    want = advertiser.strip().lower()
+    matches = [a for a in probe if a.get("page_id") and want in a["advertiser"].lower()]
+    if not matches:
+        print(f"WARNING: probe found no page named like '{advertiser}' among "
+              f"{len(probe)} keyword hits ({sorted({a['advertiser'] for a in probe})[:6]}…). "
+              f"Find the right page_id manually and re-run with --page-id.", file=sys.stderr)
+        return None
+    from collections import Counter
+    page_id, n = Counter(a["page_id"] for a in matches).most_common(1)[0]
+    share = len(matches) / len(probe) if probe else 0
+    print(f"resolved '{advertiser}' → page_id {page_id} ({n} matching ads; "
+          f"{share:.0%} of probe hits matched the name)", file=sys.stderr)
+    return page_id
 
 
 def main():
+    global AS_OF
     ap = argparse.ArgumentParser(description="Pull + normalize ad library ads via Apify")
     ap.add_argument("--platform", required=True, choices=["meta", "linkedin"])
     ap.add_argument("--advertiser")
     ap.add_argument("--keyword")
-    ap.add_argument("--page-id", help="Meta page id for a clean single-advertiser pull (found in keyword-pull output)")
+    ap.add_argument("--page-id", help="Meta page id for a clean single-advertiser pull (skips the probe)")
     ap.add_argument("--max-items", type=int, default=50)
     ap.add_argument("--actor", help="override the default Apify actor id")
     ap.add_argument("--input-json", help="raw JSON string used verbatim as actor input")
     ap.add_argument("--output", required=True)
     ap.add_argument("--dump-raw", help="also save the raw actor output here")
     ap.add_argument("--normalize-only", help="skip Apify; normalize a saved raw dump file")
+    ap.add_argument("--as-of", help="freeze 'today' (YYYY-MM-DD) so days_running is reproducible — used for fixtures")
     args = ap.parse_args()
+    if args.as_of:
+        AS_OF = datetime.datetime.fromisoformat(args.as_of).replace(tzinfo=datetime.timezone.utc)
 
     if args.normalize_only:
         with open(args.normalize_only, encoding="utf-8") as f:
@@ -243,8 +314,13 @@ def main():
             ap.error("--advertiser, --keyword or --page-id required (unless --normalize-only)")
         token = os.environ.get("APIFY_API_TOKEN") or sys.exit("error: set APIFY_API_TOKEN")
         actor = args.actor or DEFAULT_ACTORS[args.platform]
+        page_id = args.page_id
+        if args.platform == "meta" and args.advertiser and not page_id and not args.input_json:
+            page_id = resolve_page_id(token, actor, args.advertiser)
+            if not page_id:
+                sys.exit(1)
         run_input = json.loads(args.input_json) if args.input_json else build_input(
-            args.platform, args.advertiser, args.keyword, args.max_items, page_id=args.page_id)
+            args.platform, args.advertiser, args.keyword, args.max_items, page_id=page_id)
         raw_items = run_actor(token, actor, run_input)
         if args.dump_raw:
             with open(args.dump_raw, "w", encoding="utf-8") as f:
@@ -252,6 +328,7 @@ def main():
 
     ads = normalize(raw_items, args.platform)
     empty_text = sum(1 for a in ads if not a["text"] and not a["headline"])
+    no_dates = sum(1 for a in ads if a.get("days_running") is None)
     with open(args.output, "w", encoding="utf-8") as f:
         json.dump(ads, f, indent=2, ensure_ascii=False)
     print(f"normalized {len(ads)} ads → {args.output}")
@@ -259,6 +336,9 @@ def main():
         print(f"WARNING: {empty_text}/{len(ads)} ads have no text/headline — the actor's field names "
               f"probably aren't in FIELD_CANDIDATES yet. Re-run with --dump-raw, inspect, extend the map.",
               file=sys.stderr)
+    if ads and no_dates / len(ads) > 0.3:
+        print(f"WARNING: {no_dates}/{len(ads)} ads have no parsed start date — longevity stats and the "
+              f"veterans list will be partial. Inspect the raw dates with --dump-raw.", file=sys.stderr)
 
 
 if __name__ == "__main__":

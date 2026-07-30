@@ -1,0 +1,107 @@
+[
+  {
+    "number": 1,
+    "height": 7,
+    "justification": "Reproduces a finance person's exact lived artifact and lets the single outside line do all the selling — nobody in spend management runs the humiliation itself as the ad.",
+    "lemon": "right: line/dialogue throughout, betweenness between chaser and ignorer, reader completes the futility; left: text-as-graphic, flat layout, no real place",
+    "source_guess": "generated"
+  },
+  {
+    "number": 2,
+    "height": 6,
+    "justification": "A neat 19/19 numeric rhyme, but the 'seconds to spend, weeks to reconcile' contrast is standard B2B copy furniture dressed up as a typographic idea.",
+    "lemon": "right: reader-completion of the unfairness; left: flat color field, text-as-graphic, abstract time-arithmetic, brand talking about its own problem space, no place or people",
+    "source_guess": "generated"
+  },
+  {
+    "number": 3,
+    "height": 3,
+    "justification": "Posed customer, efficiency quote, logo wall — the exact wallpaper every B2B fintech runs, with brand linkage carried only by the logo.",
+    "lemon": "right: none — a posed portrait is not a character with agency; left: testimonial monologue, self-absorption, flatness, model facing camera, logo wall as proof",
+    "source_guess": "can't tell"
+  },
+  {
+    "number": 4,
+    "height": 3,
+    "justification": "Three benefit imperatives plus bank disclosure and 'Learn more' — indistinguishable from any competitor's ad if you swapped the logo.",
+    "lemon": "right: none; left: monologue claim, benefit-verbs as substance, self-absorption, emoji-as-graphic, zero situation",
+    "source_guess": "real ad"
+  },
+  {
+    "number": 5,
+    "height": 3,
+    "justification": "'[field ad headline A]' has a flicker of verb energy but resolves into the same automate/track/control triad the whole category runs.",
+    "lemon": "right: none; left: monologue claim, abstract nouns ('control', 'real time') load-bearing, self-absorption, no place, no character",
+    "source_guess": "real ad"
+  },
+  {
+    "number": 6,
+    "height": 3,
+    "justification": "Literally the category default — product screenshot hero, three checkmarks, book a demo; scrolls past without registering.",
+    "lemon": "right: none; left: UI screenshot as hero, flatness, checkmark claims, self-absorption, abstract nouns, no human presence",
+    "source_guess": "generated"
+  },
+  {
+    "number": 7,
+    "height": 9,
+    "justification": "Admitting the weakness and converting it into a verifiable promise reframed how an entire category could talk about itself, and is still cited as the move.",
+    "lemon": "right: distinct speaking voice with self-distance, wit, concrete detail (ashtrays) doing the work of a claim, reader grants the trust themselves; left: sender-voice monologue, though inverted against itself",
+    "source_guess": "real ad"
+  },
+  {
+    "number": 8,
+    "height": 7,
+    "justification": "Turning the category's own mandatory disclosure into the ad body is new territory for fintech, and the mid-read derailment plus the named colleague earns the payoff — but fine-print-as-ad is a device other categories have used.",
+    "lemon": "right: wordplay and reader-completion, a named character (Amanda), self-distance in 'Dignity not included'; left: text-as-graphic by construction, flat field, no place or depth",
+    "source_guess": "generated"
+  },
+  {
+    "number": 9,
+    "height": 4,
+    "justification": "A genuinely specific, quantified benefit — competently argued and therefore completely ignorable; nothing here stops a thumb.",
+    "lemon": "right: none; left: monologue claim, benefit arithmetic as hero, self-absorption, no character, place or moment",
+    "source_guess": "real ad"
+  },
+  {
+    "number": 10,
+    "height": 4,
+    "justification": "Stat-led gated-report ad; the numbers borrow authority but the ad owns no idea and could belong to any vendor in the space.",
+    "lemon": "right: none; left: research-stat-as-graphic, abstract nouns ('processes', 'headcount'), self-absorption, flatness, download CTA as the whole proposition",
+    "source_guess": "real ad"
+  },
+  {
+    "number": 11,
+    "height": 4,
+    "justification": "The insight card with the emptiest possible payload — 'costs more than you think' asserts a problem without showing one, in the category's most recycled shape.",
+    "lemon": "right: none; left: text-as-graphic on brand color, abstracted claim, self-absorption, no place, people, moment or voice",
+    "source_guess": "generated"
+  },
+  {
+    "number": 12,
+    "height": 8,
+    "justification": "The medium performs the failure the product prevents, in one step and with no explanation — a self-inflicted error as proof travels well beyond the buying audience.",
+    "lemon": "right: real place (a physical board in a real city), wit with self-distance, viewer completes the demonstration; left: text-only execution, no people or betweenness",
+    "source_guess": "real ad"
+  },
+  {
+    "number": 13,
+    "height": 4,
+    "justification": "A soft aviation pun bolted onto an unrelated testimonial quote — weaker wordplay than the SOC 2 anchor, and the body is pure claim monologue.",
+    "lemon": "right: a quoted line, faintly; left: testimonial monologue, 'competitive advantage' as abstract noun, self-absorption, pun disconnected from the visual, no place or character",
+    "source_guess": "real ad"
+  },
+  {
+    "number": 14,
+    "height": 6,
+    "justification": "Warm, playful and precisely observed, but the red-string conspiracy board is one of advertising's most borrowed meme formats — fresh craft on a rented device rather than owned territory.",
+    "lemon": "right: a felt place (someone's actual wall), implied character with obsessive agency, captured-moment depth, wit and episode-format serialization; left: caption doing the narrative work as text-as-graphic",
+    "source_guess": "generated"
+  },
+  {
+    "number": 15,
+    "height": 7,
+    "justification": "One found photograph and a euphemism the reader has to decode; the category never shows the mess honestly, and the deadpan does more than any claim would.",
+    "lemon": "right: real place with depth, captured moment, wordplay where 'supporting documents' collides with the image and the reader closes it; left: no people, and it leans on a single-line sender voice",
+    "source_guess": "generated"
+  }
+]

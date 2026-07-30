@@ -1,0 +1,64 @@
+[
+  {
+    "url": "https://www.linkedin.com/ad-library/detail/990001",
+    "id": "990001",
+    "format": "SINGLE_IMAGE_AD",
+    "period": {
+      "start": "2026-05-12",
+      "end": "2026-07-30"
+    },
+    "paidBy": "Paid for by TrackNord AB",
+    "totalImpression": "10k-50k",
+    "totalImpressionParsed": {
+      "estimatedMin": 10000,
+      "estimatedMax": 50000
+    },
+    "impressions": [
+      {
+        "country": "Sweden",
+        "impressions": "8k-40k"
+      }
+    ],
+    "advertiser": {
+      "url": "https://www.linkedin.com/company/1",
+      "name": "TrackNord",
+      "logo": ""
+    },
+    "body": "Full kontroll på hela flottan – i realtid. Boka en demo idag.",
+    "title": "Flottkoll utan kalkylark",
+    "imageUrls": [
+      "https://example.invalid/tracknord-li.jpg"
+    ],
+    "videoUrls": [],
+    "targetingSettings": [],
+    "buttons": [
+      "Book a demo"
+    ],
+    "clickUrl": "https://example.invalid",
+    "event": null
+  },
+  {
+    "url": "https://www.linkedin.com/ad-library/detail/990002",
+    "id": "990002",
+    "format": "VIDEO_AD",
+    "period": {
+      "start": "2026-06-20",
+      "end": "2026-07-30"
+    },
+    "paidBy": "Paid for by Veholt AB",
+    "totalImpression": "1k-5k",
+    "advertiser": {
+      "name": "Veholt"
+    },
+    "body": "AI-driven flottoptimering för moderna åkerier.",
+    "title": "Din flotta. Våra data.",
+    "imageUrls": [],
+    "videoUrls": [
+      "https://example.invalid/veholt.mp4"
+    ],
+    "buttons": [
+      "Learn more"
+    ],
+    "event": null
+  }
+]

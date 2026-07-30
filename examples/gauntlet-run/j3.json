@@ -1,0 +1,107 @@
+[
+  {
+    "number": 1,
+    "height": 6,
+    "justification": "A genuine category artifact with real recognition, but the fake email/Slack thread is already a worn B2B social device and the closing line hands the reader the point instead of letting them complete it.",
+    "lemon": "right: line/dialogue throughout, betweenness between chaser and colleague, a character who wants something; left: intrusive text-as-graphic, sender monologue in the tag line",
+    "source_guess": "generated"
+  },
+  {
+    "number": 2,
+    "height": 6,
+    "justification": "Clean typographic asymmetry the reader closes themselves, but it is structural wit on a flat field with nothing owned beyond the comparison - the same band as the SOC 2 pun.",
+    "lemon": "right: reader-completion, language play in the 19/19 mirror; left: flat color field, text-as-graphic, no place, no people",
+    "source_guess": "generated"
+  },
+  {
+    "number": 3,
+    "height": 3,
+    "justification": "Posed portrait, efficiency quote and a logo wall is the category's literal wallpaper - three proof devices stacked with zero idea.",
+    "lemon": "right: none (a posed model is not a character); left: testimonial claim, self-absorption, models posing at camera, flat layout",
+    "source_guess": "real ad"
+  },
+  {
+    "number": 4,
+    "height": 3,
+    "justification": "Three benefit imperatives, a card emoji and bank disclosures - competent, correct, and completely unseeable on a scrolling thumb.",
+    "lemon": "right: none; left: monologue claim, adjectives-as-nouns (time, mistakes), self-absorption, no place or character",
+    "source_guess": "real ad"
+  },
+  {
+    "number": 5,
+    "height": 3,
+    "justification": "[field ad headline A] has a flicker more verb energy than item 4 but is the same benefit triplet with a lightning bolt bolted on.",
+    "lemon": "right: none; left: monologue claim, control as load-bearing noun, self-absorption, flatness",
+    "source_guess": "real ad"
+  },
+  {
+    "number": 6,
+    "height": 3,
+    "justification": "This is the bottom anchor almost verbatim - UI hero, three checkmarks, book a demo.",
+    "lemon": "right: none; left: UI screenshot as hero, checkmark bullets, monologue claim, flatness, self-absorption",
+    "source_guess": "real ad"
+  },
+  {
+    "number": 7,
+    "height": 9,
+    "justification": "Admitting second place and converting the admission into the proof of the promise reframed how a whole category could talk about itself, and is still cited decades later.",
+    "lemon": "right: wit with self-distance, reader-completion of why trying harder follows, implied characters doing the trying, concrete detail in the ashtrays; left: none load-bearing",
+    "source_guess": "real ad"
+  },
+  {
+    "number": 8,
+    "height": 7,
+    "justification": "Turning the category's own unread legal tail into the whole ad owns something real - the sender's own boilerplate - and the mid-read derailment is a genuine discovery, though the payoff is a joke list rather than a stance.",
+    "lemon": "right: wordplay and reader-completion, an off-stage character with agency in Amanda, wit with self-distance; left: text-as-graphic by construction, flat field, no place",
+    "source_guess": "generated"
+  },
+  {
+    "number": 9,
+    "height": 3,
+    "justification": "A specific and genuinely useful money claim, but specificity is product news, not height - nothing here would be repeated by anyone.",
+    "lemon": "right: none; left: monologue claim, self-absorption, benefit arithmetic as hero, no place or character",
+    "source_guess": "real ad"
+  },
+  {
+    "number": 10,
+    "height": 3,
+    "justification": "Gated stat report with an adoption percentage and scale-without-headcount - the thought-leadership anchor with a download button, and blander than it.",
+    "lemon": "right: none; left: statistic as graphic, abstract nouns as subject, self-absorption, flat text layout",
+    "source_guess": "real ad"
+  },
+  {
+    "number": 11,
+    "height": 3,
+    "justification": "Near-identical to the INSIGHT anchor and weaker for it - costs more than you think is a phrase with no owner and no picture.",
+    "lemon": "right: none; left: text-as-graphic, brand-colored flat field, abstracted claim, self-absorption",
+    "source_guess": "real ad"
+  },
+  {
+    "number": 12,
+    "height": 8,
+    "justification": "The medium performs the exact failure the product prevents, in one step and with no explanation, and the joke only works for this advertiser - that is breaking convention rather than decorating it.",
+    "lemon": "right: felt sense of place in a real street and a real city, reader-completion, wit with self-distance, captured moment; left: text-as-graphic inherent to the medium",
+    "source_guess": "can't tell"
+  },
+  {
+    "number": 13,
+    "height": 4,
+    "justification": "A light metaphor headline sitting on an ordinary efficiency testimonial - well made, right message, nothing anyone tells a colleague.",
+    "lemon": "right: a quoted line with a speaker behind it; left: testimonial claim, competitive advantage as abstract noun, self-absorption, no place",
+    "source_guess": "real ad"
+  },
+  {
+    "number": 14,
+    "height": 7,
+    "justification": "Culture-borrow with real energy and a recurring episode structure that makes it an asset system rather than a one-off, and the $19 Uber is the buyer's actual week - held off 8 because true-crime parody is well-travelled outside the category.",
+    "lemon": "right: felt place in the evidence wall, character with agency and obsession, captured moment with depth, wordplay in the case-file voice, betweenness among the suspects; left: text-as-graphic in the caption",
+    "source_guess": "generated"
+  },
+  {
+    "number": 15,
+    "height": 6,
+    "justification": "The deadpan reframe is genuinely good, but crumpled receipts are the expense category's single most-used image, so the picture is wallpaper the caption has to rescue on its own.",
+    "lemon": "right: felt sense of place, found rather than designed, reader-completion, real photographic depth; left: no character, no dialogue, weak brand linkage with logo only",
+    "source_guess": "generated"
+  }
+]

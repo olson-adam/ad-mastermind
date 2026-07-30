@@ -58,33 +58,44 @@ def main():
         }
 
     gen, field, neg = medians("generated"), medians("field"), medians("negative-anchor")
+    bench = medians("benchmark")
 
     discrimination_ok = neg["median"] is not None and neg["median"] <= 5
+    # calibration floor: if canon benchmarks are in the mix, judges must place them high —
+    # otherwise the scale is compressed and 'valid discrimination' is one-sided
+    calibration_ok = bench["median"] is None or bench["median"] >= 8
     level_ok = (gen["median"] is not None and gen["median"] >= 7
                 and (field["median"] is None or gen["median"] >= field["median"]))
 
-    # Parity — descriptive only
+    # Parity — descriptive; 100% correct guessing = the blinding failed, and the
+    # scorecard must say so even when levels pass
     parity_pool = [i for i in items if i["source"] == "generated" and not i["excluded_from_parity"]]
     guesses = [g for i in parity_pool for g in i["guesses"] if g != "can't tell"]
     correct = sum(1 for i in parity_pool for g in i["guesses"] if g == "generated")
+    blinding_failed = bool(guesses) and correct == len(guesses) and len(guesses) >= 6
 
+    run_valid = discrimination_ok and calibration_ok
     scorecard = {
         "seed": mapping.get("seed"),
         "mix": mapping.get("counts"),
-        "run_valid": discrimination_ok,
+        "run_valid": run_valid,
+        "blinding_failed": blinding_failed,
         "verdict": (
             "INVALID — judges too kind (negative anchors median > 5); fix calibration and rerun"
             if not discrimination_ok else
+            "INVALID — judges miscalibrated (benchmark median < 8); fix calibration and rerun"
+            if not calibration_ok else
             "PASS — level floor met" if level_ok else
             "DID NOT PASS — generated set below the level floor"
         ),
-        "levels": {"generated": gen, "field": field, "negative_anchor": neg,
-                   "benchmark": medians("benchmark")},
+        "levels": {"generated": gen, "field": field, "negative_anchor": neg, "benchmark": bench},
         "parity_descriptive": {
             "guessable_generated_items": len(parity_pool),
-            "non-abstain_guesses": len(guesses),
+            "non_abstain_guesses": len(guesses),
             "guessed_generated_correctly": correct,
-            "note": "descriptive telemetry only — confounded when the generated set style-clusters",
+            "note": "descriptive telemetry — confounded by style-clustering and item shape. "
+                    "blinding_failed=true means source anonymity did NOT hold: the level comparison "
+                    "stands (discrimination/calibration gates passed) but 'blind' may not be claimed.",
         },
         "spread_flags": [i["number"] for i in items if i["spread_flag"]],
         "items": items,
@@ -94,10 +105,15 @@ def main():
         json.dump(scorecard, f, indent=2, ensure_ascii=False)
 
     print(f"GAUNTLET — seed {scorecard['seed']} · mix {scorecard['mix']}")
-    print(f"generated: median {gen['median']} (n={gen['n']}) · field: median {field['median']} · negative anchors: median {neg['median']}")
+    print(f"generated: median {gen['median']} (n={gen['n']}) · field: median {field['median']} · "
+          f"anchors: median {neg['median']} · benchmarks: median {bench['median']}")
+    if blinding_failed:
+        print("⚑ BLINDING FAILED — every source guess on generated items was correct; "
+              "report the level result, do not call it blind")
     print(f"spread flags (human review): {scorecard['spread_flags'] or 'none'}")
     print(f"→ {scorecard['verdict']}")
-    sys.exit(0 if discrimination_ok else 1)
+    # exit codes: 0 pass · 1 invalid run · 2 valid run, level floor not met
+    sys.exit(0 if (run_valid and level_ok) else (1 if not run_valid else 2))
 
 
 if __name__ == "__main__":

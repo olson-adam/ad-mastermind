@@ -1,6 +1,6 @@
 # ad-mastermind
 
-**B2B ad concepting graded against the ads your market actually runs.** A Claude Code skill with three spines: a **field layer** that pulls competitors' live ads from the Meta and LinkedIn ad libraries and measures the category's wallpaper, a **concepting engine** with a 12-mechanism library and a kill-gate that murders its own output, and a **gauntlet** — a blind-judging protocol where generated concepts are scored anonymously alongside the market's real ads, with a discrimination control that invalidates flattery.
+**B2B ad concepting graded against the ads your market actually runs.** A Claude Code skill with three spines: a **field layer** that pulls competitors' live ads from the Meta and LinkedIn ad libraries (both extractors live-verified) and measures the category's wallpaper, a **concepting engine** with a 12-mechanism library and a kill-gate that murders its own output, and a **gauntlet** — a blind-judging protocol where generated concepts are scored anonymously alongside the market's real ads, with a discrimination control that invalidates flattery.
 
 ```
 THE FIELD          THE CONCEPTS               THE GAUNTLET
@@ -17,11 +17,11 @@ wallpaper           field convention it breaks     mapping, 3 fresh judges,
 - **AI scoring flatters.** Our logged finding: self-scoring runs 1–1.5 levels kinder than independent judgment. So the gauntlet exists: seeded blinding, sealed mapping, three fresh judge instances, canon benchmarks as calibration, and wallpaper anchors as a discrimination control — **if the judges score the anchors kindly, the whole run is declared invalid.** The gate cannot be sweet-talked.
 - **Height without honesty is decoration.** The height ladder is a distinctiveness heuristic, openly labeled (it predicts standing out, not effectiveness — Field's IPA work on that decoupling is cited in the ladder itself), with floor scores for mediocre production and fragile-flags in every spec.
 
-## A real run
+## A real run — reported honestly
 
-We pointed the toolchain at one of B2B fintech's most celebrated creative brands. The field layer found: **85% of their live Meta ads use the same CTA**, median 50 days in market, and house phrases repeated across ten-plus ads. Five concepts generated against that measured field, then blind-judged mixed with their real ads: **generated median 7, the running ads median 3, discrimination control valid** (anchors at 3, canon benchmarks at 8–9). One generated concept scored 6 — and the judges' reasoning matched the kill-gate's own doubts about it. The gate grades; it doesn't cheerlead.
+We pointed the toolchain at the **Meta performance layer** of one of B2B fintech's most celebrated creative brands (their famous brand campaigns live elsewhere — that gap between reputation-making creative and the paid feed is itself something the field layer makes measurable). Findings: **85% of their live Meta ads use the same CTA**, median 50 days in market, compliance boilerplate across ten-plus ads. Five concepts generated against that measured field were then judged by three fresh instances mixed with their real ads: **generated median 7, the running performance ads median 3**, negative anchors at 3 (discrimination valid), canon benchmarks at 8–9 (calibration confirmed). One generated concept scored 6 — the judges' reasoning matched the kill-gate's own doubts about it.
 
-(Scraped field data is working material and never ships in this repo — the [example run](examples/example-run.md) uses fictional brands and reproduces offline.)
+Caveats, because the protocol logs its own: source anonymity did **not** hold in that run (ad copy and concept sketches read differently — the scorecard flags this as `blinding_failed` and the protocol prescribes the fix), three of the five field items were video ads judged from their copy on a static-calibrated ladder, and judges and generator share a model family. The level discrimination stood every control we could throw at it; "blind" is claimed only where it held. A sanitized version of the full run (scorecard, sealed mapping, all three judges' verdicts) ships in [examples/gauntlet-run/](examples/gauntlet-run/) — a quality gate you can't audit is theater.
 
 ## Install
 
@@ -29,7 +29,7 @@ We pointed the toolchain at one of B2B fintech's most celebrated creative brands
 npx skills add olson-adam/ad-mastermind
 ```
 
-Or clone into `~/.claude/skills/ad-mastermind/`. Requires [Claude Code](https://claude.com/claude-code), Python 3 (stdlib only), and — for live field pulls — an [Apify](https://apify.com) token (`APIFY_API_TOKEN`; a 200-ad competitive sweep costs a couple of dollars). No token → the skill runs brief-only concepting and says so honestly.
+Or clone into `~/.claude/skills/ad-mastermind/`. Requires [Claude Code](https://claude.com/claude-code), Python 3 (stdlib only), and — for live field pulls — an [Apify](https://apify.com) token (`APIFY_API_TOKEN`; a 200-ad competitive sweep typically costs well under a dollar at current actor list prices). No token → the skill runs brief-only concepting and says so honestly.
 
 ## Use
 

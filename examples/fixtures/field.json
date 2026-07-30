@@ -7,8 +7,10 @@
     "text": "Se varje fordon i realtid. Boka demo idag.",
     "headline": "Full kontroll på hela flottan",
     "cta": "Book a demo",
-    "media_type": "unknown",
-    "media_urls": [],
+    "media_type": "image",
+    "media_urls": [
+      "https://example.invalid/tracknord-7701.jpg"
+    ],
     "start_date": "2026-02-10 08:00:00",
     "days_running": 170,
     "is_active": true,
@@ -27,8 +29,10 @@
     "text": "Realtidsdata för hela flottan. Boka demo.",
     "headline": "Full kontroll på hela flottan",
     "cta": "Book a demo",
-    "media_type": "unknown",
-    "media_urls": [],
+    "media_type": "image",
+    "media_urls": [
+      "https://example.invalid/tracknord-7702.jpg"
+    ],
     "start_date": "2026-05-02 08:00:00",
     "days_running": 89,
     "is_active": true,
@@ -47,8 +51,10 @@
     "text": "Datadriven körning. Full kontroll. Boka demo.",
     "headline": "Sänk bränslekostnaderna",
     "cta": "Book a demo",
-    "media_type": "unknown",
-    "media_urls": [],
+    "media_type": "image",
+    "media_urls": [
+      "https://example.invalid/tracknord-7703.jpg"
+    ],
     "start_date": "2026-06-20 08:00:00",
     "days_running": 40,
     "is_active": true,
@@ -67,8 +73,10 @@
     "text": "Full kontroll över fordon, förare och kostnader.",
     "headline": "Fleet management made simple",
     "cta": "Learn more",
-    "media_type": "unknown",
-    "media_urls": [],
+    "media_type": "image",
+    "media_urls": [
+      "https://example.invalid/fleetbase-7801.jpg"
+    ],
     "start_date": "2026-01-15 08:00:00",
     "days_running": 196,
     "is_active": true,
@@ -87,8 +95,10 @@
     "text": "Se varför 500+ flottor valt FleetBase. Boka demo.",
     "headline": "Trusted by 500+ fleets",
     "cta": "Book a demo",
-    "media_type": "unknown",
-    "media_urls": [],
+    "media_type": "image",
+    "media_urls": [
+      "https://example.invalid/fleetbase-7802.jpg"
+    ],
     "start_date": "2026-04-11 08:00:00",
     "days_running": 110,
     "is_active": true,
@@ -107,8 +117,10 @@
     "text": "AI-driven flottoptimering för moderna åkerier.",
     "headline": "Din flotta. Våra data.",
     "cta": "Get started",
-    "media_type": "unknown",
-    "media_urls": [],
+    "media_type": "image",
+    "media_urls": [
+      "https://example.invalid/veholt-7901.jpg"
+    ],
     "start_date": "2026-07-01 08:00:00",
     "days_running": 29,
     "is_active": true,
@@ -127,8 +139,10 @@
     "text": "Allt om din flotta i en dashboard.",
     "headline": "Full kontroll, noll krångel",
     "cta": "Book a demo",
-    "media_type": "unknown",
-    "media_urls": [],
+    "media_type": "image",
+    "media_urls": [
+      "https://example.invalid/veholt-7902.jpg"
+    ],
     "start_date": "2026-03-08 08:00:00",
     "days_running": 144,
     "is_active": true,

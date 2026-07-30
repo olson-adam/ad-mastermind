@@ -1,0 +1,101 @@
+{
+  "seed": 730,
+  "counts": {
+    "benchmark": 2,
+    "negative-anchor": 3,
+    "generated": 5,
+    "field": 5
+  },
+  "items": [
+    {
+      "number": 1,
+      "source": "generated",
+      "impossible_to_deidentify": false,
+      "original_index": 0
+    },
+    {
+      "number": 2,
+      "source": "generated",
+      "impossible_to_deidentify": false,
+      "original_index": 3
+    },
+    {
+      "number": 3,
+      "source": "negative-anchor",
+      "impossible_to_deidentify": false,
+      "original_index": 11
+    },
+    {
+      "number": 4,
+      "source": "field",
+      "impossible_to_deidentify": false,
+      "original_index": 6
+    },
+    {
+      "number": 5,
+      "source": "field",
+      "impossible_to_deidentify": false,
+      "original_index": 5
+    },
+    {
+      "number": 6,
+      "source": "negative-anchor",
+      "impossible_to_deidentify": false,
+      "original_index": 10
+    },
+    {
+      "number": 7,
+      "source": "benchmark",
+      "impossible_to_deidentify": true,
+      "original_index": 13
+    },
+    {
+      "number": 8,
+      "source": "generated",
+      "impossible_to_deidentify": false,
+      "original_index": 2
+    },
+    {
+      "number": 9,
+      "source": "field",
+      "impossible_to_deidentify": false,
+      "original_index": 7
+    },
+    {
+      "number": 10,
+      "source": "field",
+      "impossible_to_deidentify": false,
+      "original_index": 8
+    },
+    {
+      "number": 11,
+      "source": "negative-anchor",
+      "impossible_to_deidentify": false,
+      "original_index": 12
+    },
+    {
+      "number": 12,
+      "source": "benchmark",
+      "impossible_to_deidentify": true,
+      "original_index": 14
+    },
+    {
+      "number": 13,
+      "source": "field",
+      "impossible_to_deidentify": false,
+      "original_index": 9
+    },
+    {
+      "number": 14,
+      "source": "generated",
+      "impossible_to_deidentify": false,
+      "original_index": 1
+    },
+    {
+      "number": 15,
+      "source": "generated",
+      "impossible_to_deidentify": false,
+      "original_index": 4
+    }
+  ]
+}

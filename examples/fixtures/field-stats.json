@@ -1,26 +1,28 @@
 {
-  "total_ads": 7,
+  "total_ads": 9,
   "by_advertiser": {
-    "TrackNord": 3,
-    "FleetBase": 2,
-    "Veholt": 2
+    "TrackNord": 4,
+    "Veholt": 3,
+    "FleetBase": 2
   },
   "by_platform": {
-    "meta": 7
+    "meta": 7,
+    "linkedin": 2
   },
   "by_media_type": {
-    "unknown": 7
+    "image": 8,
+    "video": 1
   },
   "top_ctas": {
-    "book a demo": 5,
-    "learn more": 1,
+    "book a demo": 6,
+    "learn more": 2,
     "get started": 1
   },
   "longevity": {
-    "ads_with_start_date": 7,
-    "median_days": 110,
+    "ads_with_start_date": 9,
+    "median_days": 89,
     "max_days": 196,
-    "share_over_90d": 0.57,
+    "share_over_90d": 0.44,
     "share_under_14d": 0.0
   },
   "veterans": [
@@ -56,9 +58,21 @@
     },
     {
       "advertiser": "TrackNord",
+      "days_running": 79,
+      "headline": "Flottkoll utan kalkylark",
+      "text": "Full kontroll på hela flottan – i realtid. Boka en demo idag."
+    },
+    {
+      "advertiser": "TrackNord",
       "days_running": 40,
       "headline": "Sänk bränslekostnaderna",
       "text": "Datadriven körning. Full kontroll. Boka demo."
+    },
+    {
+      "advertiser": "Veholt",
+      "days_running": 40,
+      "headline": "Din flotta. Våra data.",
+      "text": "AI-driven flottoptimering för moderna åkerier."
     },
     {
       "advertiser": "Veholt",
@@ -70,7 +84,7 @@
   "wallpaper_phrases": [
     {
       "phrase": "full kontroll",
-      "ads": 5,
+      "ads": 6,
       "advertisers": [
         "FleetBase",
         "TrackNord",
@@ -86,5 +100,27 @@
       ]
     }
   ],
-  "house_phrases": []
+  "house_phrases": [
+    {
+      "phrase": "hela flottan",
+      "ads": 3,
+      "advertiser": "TrackNord"
+    },
+    {
+      "phrase": "på hela",
+      "ads": 3,
+      "advertiser": "TrackNord"
+    },
+    {
+      "phrase": "kontroll på",
+      "ads": 3,
+      "advertiser": "TrackNord"
+    },
+    {
+      "phrase": "din flotta",
+      "ads": 3,
+      "advertiser": "Veholt"
+    }
+  ],
+  "boilerplate_phrases": []
 }

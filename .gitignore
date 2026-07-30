@@ -2,3 +2,5 @@
 __pycache__/
 *.skill
 field-data/
+gauntlet-runs/
+*-ads.json

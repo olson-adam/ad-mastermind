@@ -14,9 +14,19 @@ import json
 import random
 import sys
 
+import re
+
 REQUIRED = ("source", "one_liner", "sketch", "category")
 SOURCES = {"generated", "field", "benchmark", "negative-anchor"}
-BANNED_TOKENS = ("height", "level", "award", "cannes", "grand prix", "mechanism", "lens")
+# Protocol vocabulary only — ordinary English ("next level", "through one lens")
+# must pass. Matched as word-bounded patterns.
+BANNED_PATTERNS = [
+    (r"\b(?:height|level)\s*[:=]?\s*\d", "self-grade (height/level + number)"),
+    (r"\bmechanism\s*\d", "mechanism tag"),
+    (r"\blens\s*\d", "mechanism tag"),
+    (r"\baward(?:ed|-winning)?\b", "award reference"),
+    (r"\bcannes\b|\bgrand prix\b|\bd&ad\b|\bguldägget\b", "award reference"),
+]
 
 
 def main():
@@ -25,10 +35,17 @@ def main():
     ap.add_argument("--seed", type=int, required=True, help="stated on the scorecard; makes the shuffle reproducible")
     ap.add_argument("--blinded", required=True)
     ap.add_argument("--mapping", required=True)
+    ap.add_argument("--forbid", help="file with forbidden entity names (brands, banks, people), one per line — "
+                                     "preload it from the field corpus's advertiser names + any entities in the copy")
     args = ap.parse_args()
 
     with open(args.items, encoding="utf-8") as f:
         items = json.load(f)
+
+    forbidden_entities = []
+    if args.forbid:
+        with open(args.forbid, encoding="utf-8") as f:
+            forbidden_entities = [w.strip().lower() for w in f if w.strip() and not w.startswith("#")]
 
     errors = []
     for i, item in enumerate(items):
@@ -38,9 +55,12 @@ def main():
         if item.get("source") not in SOURCES:
             errors.append(f"item {i}: source must be one of {sorted(SOURCES)}")
         text = f"{item.get('one_liner','')} {item.get('sketch','')} {item.get('category','')}".lower()
-        for tok in BANNED_TOKENS:
-            if tok in text:
-                errors.append(f"item {i}: neutral format violated — contains '{tok}'")
+        for pattern, label in BANNED_PATTERNS:
+            if re.search(pattern, text):
+                errors.append(f"item {i}: neutral format violated — {label}")
+        for ent in forbidden_entities:
+            if re.search(rf"\b{re.escape(ent)}\b", text):
+                errors.append(f"item {i}: de-identification leak — contains entity '{ent}'")
     counts = {s: sum(1 for it in items if it.get("source") == s) for s in SOURCES}
     if counts["generated"] == 0:
         errors.append("no generated items — nothing to evaluate")
