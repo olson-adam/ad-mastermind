@@ -69,6 +69,12 @@ def main():
         for g, c in phrase_counts.most_common(200)
         if len(phrase_advertisers[g]) >= 2
     ][:args.top]
+    # house phrases: recurring within a single advertiser (≥3 ads) — their own conventions/fatigue
+    house = [
+        {"phrase": g, "ads": c, "advertiser": next(iter(phrase_advertisers[g]))}
+        for g, c in phrase_counts.most_common(300)
+        if len(phrase_advertisers[g]) == 1 and c >= 3
+    ][:args.top]
 
     result = {
         "total_ads": len(ads),
@@ -83,6 +89,7 @@ def main():
             for a in veterans
         ],
         "wallpaper_phrases": wallpaper,
+        "house_phrases": house,
     }
 
     with open(args.output, "w", encoding="utf-8") as f:
@@ -93,6 +100,10 @@ def main():
     print("wallpaper phrases (2+ advertisers):")
     for w in wallpaper[:8]:
         print(f"  “{w['phrase']}” × {w['ads']} ads ({len(w['advertisers'])} advertisers)")
+    if house:
+        print("house phrases (single advertiser, ≥3 ads):")
+        for h in house[:8]:
+            print(f"  “{h['phrase']}” × {h['ads']} ads ({h['advertiser']})")
     print(f"saved → {args.output}")
 
 

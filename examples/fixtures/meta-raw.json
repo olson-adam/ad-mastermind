@@ -1,163 +1,219 @@
 [
   {
-    "ad_archive_id": "770001",
+    "ad_archive_id": "7701",
+    "page_id": "97701",
     "page_name": "TrackNord",
+    "is_active": true,
+    "publisher_platform": [
+      "FACEBOOK",
+      "INSTAGRAM"
+    ],
+    "start_date_formatted": "2026-02-10 08:00:00",
+    "start_date": "2026-02-10",
+    "impressions_with_index": {
+      "impressions_text": null,
+      "impressions_index": -1
+    },
     "snapshot": {
-      "body": null,
-      "adCreativeBodies": null
-    },
-    "ad_creative_bodies": [
-      "Se varje fordon i realtid. Boka demo idag."
-    ],
-    "ad_creative_link_titles": [
-      "Full kontroll på hela flottan"
-    ],
-    "cta_text": "Book a demo",
-    "ad_delivery_start_time": "2026-02-10",
-    "impressions": {
-      "lower_bound": 10000,
-      "upper_bound": 50000
-    },
-    "images": [
-      "https://example.invalid/tracknord-1.jpg"
-    ]
+      "body": {
+        "text": "Se varje fordon i realtid. Boka demo idag."
+      },
+      "title": "Full kontroll på hela flottan",
+      "cta_text": "Book a demo",
+      "caption": "tracknord.example",
+      "cards": [],
+      "original_image_url": null,
+      "images": [
+        {
+          "original_image_url": "https://example.invalid/tracknord-7701.jpg"
+        }
+      ]
+    }
   },
   {
-    "ad_archive_id": "770002",
+    "ad_archive_id": "7702",
+    "page_id": "97702",
     "page_name": "TrackNord",
+    "is_active": true,
+    "publisher_platform": [
+      "FACEBOOK",
+      "INSTAGRAM"
+    ],
+    "start_date_formatted": "2026-05-02 08:00:00",
+    "start_date": "2026-05-02",
+    "impressions_with_index": {
+      "impressions_text": null,
+      "impressions_index": -1
+    },
     "snapshot": {
-      "body": null,
-      "adCreativeBodies": null
-    },
-    "ad_creative_bodies": [
-      "Realtidsdata för hela flottan. Boka demo."
-    ],
-    "ad_creative_link_titles": [
-      "Full kontroll på hela flottan"
-    ],
-    "cta_text": "Book a demo",
-    "ad_delivery_start_time": "2026-05-02",
-    "impressions": {
-      "lower_bound": 10000,
-      "upper_bound": 50000
-    },
-    "images": [
-      "https://example.invalid/tracknord-2.jpg"
-    ]
+      "body": {
+        "text": "Realtidsdata för hela flottan. Boka demo."
+      },
+      "title": "Full kontroll på hela flottan",
+      "cta_text": "Book a demo",
+      "caption": "tracknord.example",
+      "cards": [],
+      "original_image_url": null,
+      "images": [
+        {
+          "original_image_url": "https://example.invalid/tracknord-7702.jpg"
+        }
+      ]
+    }
   },
   {
-    "ad_archive_id": "770003",
+    "ad_archive_id": "7703",
+    "page_id": "97703",
     "page_name": "TrackNord",
+    "is_active": true,
+    "publisher_platform": [
+      "FACEBOOK",
+      "INSTAGRAM"
+    ],
+    "start_date_formatted": "2026-06-20 08:00:00",
+    "start_date": "2026-06-20",
+    "impressions_with_index": {
+      "impressions_text": null,
+      "impressions_index": -1
+    },
     "snapshot": {
-      "body": null,
-      "adCreativeBodies": null
-    },
-    "ad_creative_bodies": [
-      "Datadriven körning. Full kontroll. Boka demo."
-    ],
-    "ad_creative_link_titles": [
-      "Sänk bränslekostnaderna"
-    ],
-    "cta_text": "Book a demo",
-    "ad_delivery_start_time": "2026-06-20",
-    "impressions": {
-      "lower_bound": 10000,
-      "upper_bound": 50000
-    },
-    "images": [
-      "https://example.invalid/tracknord-3.jpg"
-    ]
+      "body": {
+        "text": "Datadriven körning. Full kontroll. Boka demo."
+      },
+      "title": "Sänk bränslekostnaderna",
+      "cta_text": "Book a demo",
+      "caption": "tracknord.example",
+      "cards": [],
+      "original_image_url": null,
+      "images": [
+        {
+          "original_image_url": "https://example.invalid/tracknord-7703.jpg"
+        }
+      ]
+    }
   },
   {
-    "ad_archive_id": "770004",
+    "ad_archive_id": "7801",
+    "page_id": "97801",
     "page_name": "FleetBase",
+    "is_active": true,
+    "publisher_platform": [
+      "FACEBOOK",
+      "INSTAGRAM"
+    ],
+    "start_date_formatted": "2026-01-15 08:00:00",
+    "start_date": "2026-01-15",
+    "impressions_with_index": {
+      "impressions_text": null,
+      "impressions_index": -1
+    },
     "snapshot": {
-      "body": null,
-      "adCreativeBodies": null
-    },
-    "ad_creative_bodies": [
-      "Full kontroll över fordon, förare och kostnader."
-    ],
-    "ad_creative_link_titles": [
-      "Fleet management made simple"
-    ],
-    "cta_text": "Learn more",
-    "ad_delivery_start_time": "2026-01-15",
-    "impressions": {
-      "lower_bound": 10000,
-      "upper_bound": 50000
-    },
-    "images": [
-      "https://example.invalid/fleetbase-4.jpg"
-    ]
+      "body": {
+        "text": "Full kontroll över fordon, förare och kostnader."
+      },
+      "title": "Fleet management made simple",
+      "cta_text": "Learn more",
+      "caption": "fleetbase.example",
+      "cards": [],
+      "original_image_url": null,
+      "images": [
+        {
+          "original_image_url": "https://example.invalid/fleetbase-7801.jpg"
+        }
+      ]
+    }
   },
   {
-    "ad_archive_id": "770005",
+    "ad_archive_id": "7802",
+    "page_id": "97802",
     "page_name": "FleetBase",
+    "is_active": true,
+    "publisher_platform": [
+      "FACEBOOK",
+      "INSTAGRAM"
+    ],
+    "start_date_formatted": "2026-04-11 08:00:00",
+    "start_date": "2026-04-11",
+    "impressions_with_index": {
+      "impressions_text": null,
+      "impressions_index": -1
+    },
     "snapshot": {
-      "body": null,
-      "adCreativeBodies": null
-    },
-    "ad_creative_bodies": [
-      "Se varför 500+ flottor valt FleetBase. Boka demo."
-    ],
-    "ad_creative_link_titles": [
-      "Trusted by 500+ fleets"
-    ],
-    "cta_text": "Book a demo",
-    "ad_delivery_start_time": "2026-04-11",
-    "impressions": {
-      "lower_bound": 10000,
-      "upper_bound": 50000
-    },
-    "images": [
-      "https://example.invalid/fleetbase-5.jpg"
-    ]
+      "body": {
+        "text": "Se varför 500+ flottor valt FleetBase. Boka demo."
+      },
+      "title": "Trusted by 500+ fleets",
+      "cta_text": "Book a demo",
+      "caption": "fleetbase.example",
+      "cards": [],
+      "original_image_url": null,
+      "images": [
+        {
+          "original_image_url": "https://example.invalid/fleetbase-7802.jpg"
+        }
+      ]
+    }
   },
   {
-    "ad_archive_id": "770006",
+    "ad_archive_id": "7901",
+    "page_id": "97901",
     "page_name": "Veholt",
+    "is_active": true,
+    "publisher_platform": [
+      "FACEBOOK",
+      "INSTAGRAM"
+    ],
+    "start_date_formatted": "2026-07-01 08:00:00",
+    "start_date": "2026-07-01",
+    "impressions_with_index": {
+      "impressions_text": null,
+      "impressions_index": -1
+    },
     "snapshot": {
-      "body": null,
-      "adCreativeBodies": null
-    },
-    "ad_creative_bodies": [
-      "AI-driven flottoptimering för moderna åkerier."
-    ],
-    "ad_creative_link_titles": [
-      "Din flotta. Våra data."
-    ],
-    "cta_text": "Get started",
-    "ad_delivery_start_time": "2026-07-01",
-    "impressions": {
-      "lower_bound": 10000,
-      "upper_bound": 50000
-    },
-    "images": [
-      "https://example.invalid/veholt-6.jpg"
-    ]
+      "body": {
+        "text": "AI-driven flottoptimering för moderna åkerier."
+      },
+      "title": "Din flotta. Våra data.",
+      "cta_text": "Get started",
+      "caption": "veholt.example",
+      "cards": [],
+      "original_image_url": null,
+      "images": [
+        {
+          "original_image_url": "https://example.invalid/veholt-7901.jpg"
+        }
+      ]
+    }
   },
   {
-    "ad_archive_id": "770007",
+    "ad_archive_id": "7902",
+    "page_id": "97902",
     "page_name": "Veholt",
+    "is_active": true,
+    "publisher_platform": [
+      "FACEBOOK",
+      "INSTAGRAM"
+    ],
+    "start_date_formatted": "2026-03-08 08:00:00",
+    "start_date": "2026-03-08",
+    "impressions_with_index": {
+      "impressions_text": null,
+      "impressions_index": -1
+    },
     "snapshot": {
-      "body": null,
-      "adCreativeBodies": null
-    },
-    "ad_creative_bodies": [
-      "Allt om din flotta i en dashboard."
-    ],
-    "ad_creative_link_titles": [
-      "Full kontroll, noll krångel"
-    ],
-    "cta_text": "Book a demo",
-    "ad_delivery_start_time": "2026-03-08",
-    "impressions": {
-      "lower_bound": 10000,
-      "upper_bound": 50000
-    },
-    "images": [
-      "https://example.invalid/veholt-7.jpg"
-    ]
+      "body": {
+        "text": "Allt om din flotta i en dashboard."
+      },
+      "title": "Full kontroll, noll krångel",
+      "cta_text": "Book a demo",
+      "caption": "veholt.example",
+      "cards": [],
+      "original_image_url": null,
+      "images": [
+        {
+          "original_image_url": "https://example.invalid/veholt-7902.jpg"
+        }
+      ]
+    }
   }
 ]

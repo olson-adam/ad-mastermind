@@ -90,9 +90,62 @@ def days_running(start_date: str | None) -> int | None:
     return None
 
 
+def is_template(s: str) -> bool:
+    return "{{" in s  # dynamic product ads carry {{product.name}}-style variables
+
+
+def normalize_meta_adlib(raw: dict) -> dict | None:
+    """Extractor verified live against curious_coder~facebook-ads-library-scraper
+    (2026-07-30). Dynamic product ads keep their real content in snapshot.cards[]."""
+    snap = raw.get("snapshot") or {}
+    cards = snap.get("cards") or []
+    card = cards[0] if cards else {}
+
+    def first_real(*vals):
+        vals = [as_text(v) for v in vals if v not in (None, "", [], {})]
+        real = [v for v in vals if v and not is_template(v)]
+        return real[0] if real else (vals[0] if vals else "")
+
+    body = snap.get("body") or {}
+    text = first_real(card.get("body"), body.get("text") if isinstance(body, dict) else body,
+                      snap.get("link_description"), card.get("link_description"))
+    media, media_type = [], "unknown"
+    for c in cards or [snap]:
+        if c.get("video_sd_url") or c.get("video_hd_url"):
+            media_type = "video"
+            media.append(as_text(c.get("video_preview_image_url") or c.get("video_sd_url")))
+        elif c.get("original_image_url") or c.get("resized_image_url") or c.get("image_url"):
+            media_type = "image" if media_type == "unknown" else media_type
+            media.append(as_text(c.get("original_image_url") or c.get("resized_image_url") or c.get("image_url")))
+    start = raw.get("start_date_formatted") or raw.get("start_date")
+    imp = raw.get("impressions_with_index") or {}
+    return {
+        "platform": "meta",
+        "advertiser": as_text(raw.get("page_name")),
+        "page_id": as_text(raw.get("page_id")),
+        "ad_id": as_text(raw.get("ad_archive_id") or raw.get("ad_id")),
+        "text": text,
+        "headline": first_real(card.get("title"), snap.get("title")),
+        "cta": as_text(snap.get("cta_text") or card.get("cta_text") or snap.get("cta_type")),
+        "media_type": media_type,
+        "media_urls": media[:5],
+        "start_date": as_text(start),
+        "days_running": days_running(raw.get("start_date") or start),
+        "is_active": raw.get("is_active"),
+        "publisher_platforms": raw.get("publisher_platform") or [],
+        "dynamic_template": is_template(as_text((body or {}).get("text", "") if isinstance(body, dict) else "")),
+        "impressions_range": as_text(imp.get("impressions_text") or ""),
+    }
+
+
 def normalize(raw_items: list[dict], platform: str) -> list[dict]:
     out = []
     for raw in raw_items:
+        if platform == "meta" and ("snapshot" in raw or "ad_archive_id" in raw):
+            row = normalize_meta_adlib(raw)
+            if row:
+                out.append(row)
+            continue
         start = pick(raw, "start_date")
         media = pick(raw, "media_urls") or []
         if isinstance(media, dict):
@@ -147,15 +200,25 @@ def run_actor(token: str, actor_id: str, run_input: dict, timeout: int = 600) ->
     return items
 
 
-def build_input(platform: str, advertiser: str | None, keyword: str | None, max_items: int) -> dict:
-    # Minimal, actor-agnostic input; most ad-library actors accept these names.
-    # If a chosen actor needs different input keys, pass --input-json.
-    base = {"maxItems": max_items, "count": max_items}
-    if advertiser:
-        base.update({"searchTerms": [advertiser], "companyName": advertiser, "query": advertiser})
-    if keyword:
-        base.update({"searchTerms": [keyword], "query": keyword})
-    return base
+def build_input(platform: str, advertiser: str | None, keyword: str | None, max_items: int, country: str = "US", page_id: str | None = None) -> dict:
+    """Input builders verified against the default actors' input schemas
+    (via /builds/default/openapi.json). Other actors: pass --input-json."""
+    term = advertiser or keyword
+    if platform == "meta":
+        # curious_coder~facebook-ads-library-scraper requires Ad Library URLs.
+        # Keyword search is noisy — prefer --page-id (find it in a keyword pull's
+        # page_id field) for a clean single-advertiser pull.
+        if page_id:
+            adlib = ("https://www.facebook.com/ads/library/?active_status=active&ad_type=all"
+                     f"&country={country}&view_all_page_id={page_id}")
+        else:
+            adlib = ("https://www.facebook.com/ads/library/?active_status=active&ad_type=all"
+                     f"&country={country}&q={urllib.parse.quote(term or '')}&search_type=keyword_unordered&media_type=all")
+        return {"urls": [{"url": adlib}], "count": max_items, "limitPerSource": max_items,
+                "scrapeAdDetails": False}
+    # linkedin default actor: generic term input, tolerant keys
+    return {"searchTerms": [term], "companyName": term, "query": term,
+            "maxItems": max_items, "count": max_items}
 
 
 def main():
@@ -163,6 +226,7 @@ def main():
     ap.add_argument("--platform", required=True, choices=["meta", "linkedin"])
     ap.add_argument("--advertiser")
     ap.add_argument("--keyword")
+    ap.add_argument("--page-id", help="Meta page id for a clean single-advertiser pull (found in keyword-pull output)")
     ap.add_argument("--max-items", type=int, default=50)
     ap.add_argument("--actor", help="override the default Apify actor id")
     ap.add_argument("--input-json", help="raw JSON string used verbatim as actor input")
@@ -175,12 +239,12 @@ def main():
         with open(args.normalize_only, encoding="utf-8") as f:
             raw_items = json.load(f)
     else:
-        if not (args.advertiser or args.keyword):
-            ap.error("--advertiser or --keyword required (unless --normalize-only)")
+        if not (args.advertiser or args.keyword or args.page_id):
+            ap.error("--advertiser, --keyword or --page-id required (unless --normalize-only)")
         token = os.environ.get("APIFY_API_TOKEN") or sys.exit("error: set APIFY_API_TOKEN")
         actor = args.actor or DEFAULT_ACTORS[args.platform]
         run_input = json.loads(args.input_json) if args.input_json else build_input(
-            args.platform, args.advertiser, args.keyword, args.max_items)
+            args.platform, args.advertiser, args.keyword, args.max_items, page_id=args.page_id)
         raw_items = run_actor(token, actor, run_input)
         if args.dump_raw:
             with open(args.dump_raw, "w", encoding="utf-8") as f:
