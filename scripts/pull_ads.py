@@ -242,7 +242,7 @@ def run_actor(token: str, actor_id: str, run_input: dict, timeout: int = 600) ->
     return items
 
 
-def build_input(platform: str, advertiser: str | None, keyword: str | None, max_items: int, country: str = "US", page_id: str | None = None) -> dict:
+def build_input(platform: str, advertiser: str | None, keyword: str | None, max_items: int, country: str = "ALL", page_id: str | None = None) -> dict:
     """Both input builders live-verified 2026-07-30: Meta against curious_coder's
     input schema + real runs, LinkedIn against ivanvs' schema + a real run
     (keyword search searches ad TEXT on LinkedIn too — filter the output by
@@ -252,7 +252,8 @@ def build_input(platform: str, advertiser: str | None, keyword: str | None, max_
     if platform == "meta":
         # curious_coder~facebook-ads-library-scraper requires Ad Library URLs.
         # Keyword search is noisy — prefer --page-id (find it in a keyword pull's
-        # page_id field) for a clean single-advertiser pull.
+        # page_id field) for a clean single-advertiser pull. Country defaults to
+        # ALL: a scoped country silently hides the advertiser's other markets.
         if page_id:
             adlib = ("https://www.facebook.com/ads/library/?active_status=active&ad_type=all"
                      f"&country={country}&view_all_page_id={page_id}")
@@ -267,7 +268,7 @@ def build_input(platform: str, advertiser: str | None, keyword: str | None, max_
     return {"urls": [{"url": li_url}], "maxRecords": max_items}
 
 
-def resolve_page_id(token: str, actor: str, advertiser: str, country: str = "US") -> str | None:
+def resolve_page_id(token: str, actor: str, advertiser: str, country: str = "ALL") -> str | None:
     """Keyword search is noisy (a 'Ramp' search returns boat-ramp vendors), so
     --advertiser on Meta runs a small probe first, picks the page_id whose
     page_name matches the advertiser, then the caller re-pulls page-scoped."""
@@ -295,6 +296,11 @@ def main():
     ap.add_argument("--advertiser")
     ap.add_argument("--keyword")
     ap.add_argument("--page-id", help="Meta page id for a clean single-advertiser pull (skips the probe)")
+    ap.add_argument("--country", default="ALL",
+                    help="Meta Ad Library country filter (2-letter code or ALL, default ALL). "
+                         "A country-scoped pull silently hides everything the advertiser runs "
+                         "elsewhere — a Nordic advertiser scoped to US looks near-dead. "
+                         "Meta only; the LinkedIn library URL carries no country parameter.")
     ap.add_argument("--max-items", type=int, default=50)
     ap.add_argument("--actor", help="override the default Apify actor id")
     ap.add_argument("--input-json", help="raw JSON string used verbatim as actor input")
@@ -316,11 +322,12 @@ def main():
         actor = args.actor or DEFAULT_ACTORS[args.platform]
         page_id = args.page_id
         if args.platform == "meta" and args.advertiser and not page_id and not args.input_json:
-            page_id = resolve_page_id(token, actor, args.advertiser)
+            page_id = resolve_page_id(token, actor, args.advertiser, country=args.country)
             if not page_id:
                 sys.exit(1)
         run_input = json.loads(args.input_json) if args.input_json else build_input(
-            args.platform, args.advertiser, args.keyword, args.max_items, page_id=page_id)
+            args.platform, args.advertiser, args.keyword, args.max_items,
+            country=args.country, page_id=page_id)
         raw_items = run_actor(token, actor, run_input)
         if args.dump_raw:
             with open(args.dump_raw, "w", encoding="utf-8") as f:
