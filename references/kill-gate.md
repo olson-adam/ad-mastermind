@@ -30,12 +30,18 @@ Every surviving concept must cite, from the field analysis (`field-stats.json` +
 - **its nearest neighbor in the field** — the existing ad it could most be confused with, and why it can't be.
 A concept that breaks no named field convention is not automatically dead — but it must then earn its place purely on height ≥7, and the deliverable must say "in-convention" honestly. A concept confusable with a running competitor ad = kill (the field just proved it's already wallpaper).
 
-### 5. The quick tests
+### 5. The strategy test
+Every surviving concept names, from the market-logic config ([market-logic.md](market-logic.md)):
+- **which audience cell it serves** (cold/warm × in/off-market, or the profile's custom axes), and
+- **which memory structure it builds** — the entry point/trigger it links to the brand, in the demand mode the profile prescribes.
+A concept that only works for a cell the profile says doesn't matter = kill or re-target. A concept that scores 7 on the ladder but builds the wrong memory is a beautiful ad for someone else's strategy — the ladder measures distinctiveness, this instrument measures aim. When the profile's fluency ceiling is active (unknown brand/rebrand), survivors are additionally checked for asset-system consistency: new territory INSIDE the constant device, not a new voice per concept.
+
+### 6. The quick tests
 - **"Get it?":** does an outsider get the point in 3 seconds without industry knowledge — or (for insider concepts) does the target buyer get it in 1 second? No on both = kill.
 - **"Three executions":** does the idea hold for three different executions? If not, it's a one-off gag, not an idea — park as tactical single or kill. (Device candidates must hold for 10.)
 - **The artifact test:** does the wit sit in a genuine category-internal artifact? Then the concept can be 7–8 — but requires the craft condition "looks found, not designed" as a fragile-flag in the spec, plus a real reference document.
 
-### 6. Hygiene scorecard (8 dimensions, 0–5 — internal culling tool, never shown in the client-facing deliverable)
+### 7. Hygiene scorecard (8 dimensions, 0–5 — internal culling tool, never shown in the client-facing deliverable)
 
 | # | Dimension | Kill rule |
 |---|---|---|
@@ -60,11 +66,13 @@ Each survivor is escalated 3 times — this is what moves 5–6 → 7+:
 2. **"Remove the safety net":** strike the hedge, the explanation, the softener. What remains when the idea stands unprotected?
 3. **"The idea behind the idea":** which deeper truth made the idea good? Build a new version directly on that truth.
 
-**Sharpening (from our blind testing):** the push-pass alone isn't enough — self-scores after push still judged 6 independently. After the push: rerun instruments 1+3+4 on the pushed version asking *"is this still a form device, or do we now own something?"*. A pushed 6 is a 6.
+**Sharpening (from our blind testing):** the push-pass alone isn't enough — self-scores after push still judged 6 independently. After the push: rerun instruments 1+3+4+5 on the pushed version asking *"is this still a form device, or do we now own something — and does it still aim where the profile points?"*. A pushed 6 is a 6.
 
 Keep the strongest version (which may be the original — but proven against the escalations). Note in the deliverable which push won.
 
 ## Portfolio rules (on the survivors as a GROUP)
+
+The quotas below are the DEFAULT profile — the market-logic config block overrides them (narrow TAM re-weights toward series/recognition; premium/dignity briefs invert the temperature quota via `--premium`), and every override is stated in the deliverable. `spec_check.py` enforces the defaults mechanically.
 
 1. **Mechanism spread:** ≥4 different mechanisms among survivors.
 2. **Test-cell logic:** no two concepts share both mechanism and insight.

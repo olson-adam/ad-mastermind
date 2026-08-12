@@ -28,6 +28,7 @@ python3 ../scripts/field_stats.py --ads fixtures/field.json fixtures/linkedin.js
 **Register:** documentary photographic
 **Temperature:** playful
 **Insight:** The coordinator's morning is an oral tradition, not a system.
+**Strategy fit:** cold × off-market — links the 07:02-chaos entry point to the brand; memory-building cell per the market-logic config (broad TAM, demand creation).
 **Field convention broken:** "full kontroll" (6/9 ads, all 3 advertisers) — this ad shows the opposite of control, verbatim.
 **Nearest field neighbor:** TrackNord's "Full kontroll på hela flottan" — cannot be confused: theirs claims the fantasy, this stages the reality.
 **Height:** 7/10 (provisional) — category-new recognition scene · **Floor score:** 5 (dies if the log reads written, not transcribed)
@@ -44,6 +45,7 @@ python3 ../scripts/field_stats.py --ads fixtures/field.json fixtures/linkedin.js
 **Register:** photo-meme
 **Temperature:** playful
 **Insight:** Fuel admin is the job nobody admits is a job.
+**Strategy fit:** warm × in-market — the admin-pain entry point with the product's answer in the punchline; the portfolio's capture cell, per the config's max-2 quota.
 **Field convention broken:** "boka demo" CTA monoculture (6 of 9 ads) — and the category's no-humor default.
 **Nearest field neighbor:** none — no field ad shows paper at all.
 **Height:** 7/10 (provisional) · **Floor score:** 6 — the deadpan museum framing survives mediocre photography

@@ -1,14 +1,14 @@
 # ad-mastermind
 
-**B2B ad concepting graded against the ads your market actually runs.** A Claude Code skill with three spines: a **field layer** that pulls competitors' live ads from the Meta and LinkedIn ad libraries (both extractors live-verified) and measures the category's wallpaper, a **concepting engine** with a 12-mechanism library and a kill-gate that murders its own output, and a **gauntlet** — a blind-judging protocol where generated concepts are scored anonymously alongside the market's real ads, with a discrimination control that invalidates flattery.
+**B2B ad concepting graded against the ads your market actually runs.** A Claude Code skill with four spines: a **field layer** that pulls competitors' live ads from the Meta and LinkedIn ad libraries (both extractors live-verified) and measures the category's wallpaper, a **strategist layer** that diagnoses the market's logic and builds the insight foundation — asking the human first (their buyer knowledge is primary evidence), researching only the gaps, tagging everything else `[assumption]` — a **concepting engine** with a 12-mechanism library and a kill-gate that murders its own output, and a **gauntlet** — a blind-judging protocol where generated concepts are scored anonymously alongside the market's real ads, with a discrimination control that invalidates flattery.
 
 ```
-THE FIELD          THE CONCEPTS               THE GAUNTLET
-live competitor ──▶ 12 mechanisms ──▶ kill-gate ──▶ blind judges score your
-ads via Apify       (20–30 raw)      (5–8 live)    concepts MIXED with the
-+ measured          each concept must name the     field's real ads — sealed
-wallpaper           field convention it breaks     mapping, 3 fresh judges,
-                                                   anchors that catch kindness
+THE FIELD           THE STRATEGIST            THE CONCEPTS               THE GAUNTLET
+live competitor ──▶ market logic (7 axes) ──▶ 12 mechanisms ──▶ kill-gate ──▶ blind judges score your
+ads via Apify       JTBD · triggers · the     (20–30 raw)      (5–8 live)    concepts MIXED with the
++ measured          buyer's own voice —       every concept must name the    field's real ads — sealed
+wallpaper           asks the human FIRST,     field convention it breaks     mapping, 3 fresh judges,
+                    researches only the gaps  AND the memory it builds       anchors that catch kindness
 ```
 
 ## Why this exists
@@ -16,6 +16,7 @@ wallpaper           field convention it breaks     mapping, 3 fresh judges,
 - **AI concepting happens in a vacuum.** "Differentiated" is asserted, never measured. Here, differentiation is a number: the field layer finds the phrases 2+ competitors share, the CTA monoculture, the longest-running veterans — and every delivered concept must cite the measured convention it breaks. A concept confusable with a running competitor ad gets killed by data, not opinion.
 - **AI scoring flatters.** Our logged finding: self-scoring runs 1–1.5 levels kinder than independent judgment. So the gauntlet exists: seeded blinding, sealed mapping, three fresh judge instances, canon benchmarks as calibration, and wallpaper anchors as a discrimination control — **if the judges score the anchors kindly, the whole run is declared invalid.** The gate cannot be sweet-talked.
 - **Height without honesty is decoration.** The height ladder is a distinctiveness heuristic, openly labeled (it predicts standing out, not effectiveness — Field's IPA work on that decoupling is cited in the ladder itself), with floor scores for mediocre production and fragile-flags in every spec.
+- **Distinctive isn't the same as aimed.** A concept can judge 7 and build the wrong memory for the brand's actual situation. The strategist layer diagnoses the market's logic (purchase cycle, TAM shape, brand maturity, in-market share…) into a config the whole pipeline reads, and the kill-gate's strategy test kills concepts that shine at the wrong audience — while the ask-first rule keeps the human's buyer knowledge as primary evidence instead of re-deriving it.
 
 ## Real runs — reported honestly
 
@@ -37,12 +38,12 @@ Or clone into `~/.claude/skills/ad-mastermind/`. Requires [Claude Code](https://
 
 ```
 you: what are our competitors running?          → field scan + field brief
-you: ad concepts for {brand}                    → full run: field → concepts → kill log
+you: ad concepts for {brand}                    → full run: field → strategist → concepts → kill log
 you: critique these ads                         → height + Lemon profile per ad
 you: run the gauntlet on these                  → blind verdict vs the field's real ads
 ```
 
-Deliverables: a field brief where every number is script-computed, 5–8 concept specs (mechanism, field convention broken, height + floor score, Lemon profile, fragile flags, thumbnail test), a kill log proving the gate gripped, and — if you run the gauntlet — a scorecard with sealed-mapping integrity.
+Deliverables: a field brief where every number is script-computed, a market-logic config + insight map with provenance tags (`user-sourced` / cited / `[assumption]`), 5–8 concept specs (mechanism, strategy fit, field convention broken, height + floor score, Lemon profile, fragile flags, thumbnail test), a kill log proving the gate gripped, and — if you run the gauntlet — a scorecard with sealed-mapping integrity.
 
 ## What it deliberately doesn't do
 

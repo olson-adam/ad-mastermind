@@ -11,6 +11,7 @@ Every delivered concept is written in this exact structure. The spec is what a d
 **Register:** {documentary photographic | typographic wit | graphic system | artifact | photo-meme | …}
 **Temperature:** {playful | dry}
 **Insight:** {the field/brief insight it's built on, one line}
+**Strategy fit:** {the audience cell it serves (per the market-logic config) + the memory structure it builds — which trigger/entry point it links to the brand}
 **Field convention broken:** {the named wallpaper phrase/format from field-stats it defies — or "in-convention" stated honestly}
 **Nearest field neighbor:** {the running ad it could most be confused with, and why it can't be}
 **Height:** {level}/10 — {one-line justification} · **Floor score:** {level if production turns out mediocre}

@@ -67,7 +67,7 @@ def main():
                  "artifact", "photo-meme", "illustration", "photography"}
     TEXT_REGISTERS = {"typographic wit"}
     REQUIRED_FIELDS = ["one-liner", "sketch", "mechanism", "register", "temperature", "insight",
-                       "field convention broken", "nearest field neighbor", "height",
+                       "strategy fit", "field convention broken", "nearest field neighbor", "height",
                        "lemon profile", "series potential", "fragile flags", "thumbnail test"]
 
     fails, warns = [], []
